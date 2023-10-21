@@ -36,4 +36,4 @@ jobs:
       with:
         gradle-version: 8.2.1
         build-root-directory : ./demo
-    - run: build
+        arguments: build
