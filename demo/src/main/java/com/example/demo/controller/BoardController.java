@@ -24,8 +24,6 @@ public class BoardController {
     }
 
 
-
-
     @GetMapping({"/", "list"})
     public String list(Model model){
         model.addAttribute("categoryList", categoryService.getCategoryList());
