@@ -25,8 +25,8 @@ public class BoardController {
 
     @GetMapping({"/", "list"})
     public String list(Model model){
-        model.addAttribute("categoryList", categoryService.getCategoryList());
-        model.addAttribute("subCategoryList", categoryService.findByIsUpperNotIn(0L));
+        // model.addAttribute("categoryList", categoryService.getCategoryList());
+        // model.addAttribute("subCategoryList", categoryService.findByIsUpperNotIn(0L));
         return "index";
     }
 
