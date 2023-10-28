@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 @SpringBootTest
 public class MemberRepositoryTests {
 
-   /* private final PasswordEncoder encoder;
+   private final PasswordEncoder encoder;
     private final MemberRepository repository;
 
     @Autowired
@@ -54,6 +54,6 @@ public class MemberRepositoryTests {
 
             repository.save(member);
         });
-    }*/
+    }
 
 }

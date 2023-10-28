@@ -19,11 +19,9 @@ import java.util.Set;
 @Getter
 @Builder(builderMethodName = "MemberBuilder")
 public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_idx")
-    private Long memberIdx;
-
     @Column(unique = true, name="email")
     private String email;
 
@@ -45,7 +43,6 @@ public class Member {
     @Builder.Default
     private Set<MemberRole> roleSet = new HashSet<MemberRole>();
 
-
     public void addMemberRole(MemberRole memberRole){
         roleSet.add(memberRole);
     }
@@ -58,8 +55,7 @@ public class Member {
                 .modifyDate(dto.getModifyDate())
                 .password(dto.getPassword())
                 .name(dto.getName())
-                .regDate(dto.getRegDate())
-                .memberIdx(dto.getMemberIdx());
+                .regDate(dto.getRegDate());
     }
 
 }
