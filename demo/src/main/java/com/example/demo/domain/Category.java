@@ -27,7 +27,7 @@ public class Category {
     public static CategoryBuilder builder(CategoryDTO dto) {
         return CategoryBuilder()
                 .cateIdx(dto.getCateIdx())
-                .content(dto.getContent())
+                .content(dto.getContent());
 
     }
 }
