@@ -15,4 +15,5 @@ public class CategoryDTO {
 
     private String cateIdx;
     private String content;
+    private String test;
 }
