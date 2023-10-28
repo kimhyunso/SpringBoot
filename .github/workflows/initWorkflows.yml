@@ -15,12 +15,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -37,24 +35,18 @@ jobs:
         gradle-version: 8.2.1
         build-root-directory : ./demo
         arguments: build
-  jobs:
+        
+  deploy:
     needs: build
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/download-artifact@v3
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
       with:
-        name: my-artifact
-        path: path/to/artifact
-        
+        name: springboot
     - name: Setup SSH
       uses: webfactory/ssh-agent@v0.5.4
       with:
          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+         script: scp *.jar ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/volume1/docker/SpringBoot/demo/demo/build/libs
     
-    # - name: SCP transfer
-     # run: scp *.jar ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:~/cicd
-    # - name: Execute remote commands
-      #  run: |
-        # ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "sudo fuser -k 8080/tcp"
-        # ssh ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "sudo nohup java -jar ~/cicd/*.jar &"
