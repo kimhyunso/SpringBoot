@@ -24,8 +24,6 @@ public class MemberController {
         log.info("exAdmin.................");
     }
 
-
-
     @GetMapping("/login")
     public String memberLogin(){
         return "member/login";

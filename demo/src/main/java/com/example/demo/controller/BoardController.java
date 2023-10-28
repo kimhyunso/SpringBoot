@@ -15,15 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BoardController {
 
-    CategoryService categoryService;
-
+    private CategoryService categoryService;
 
     @Autowired
     public BoardController(CategoryService categoryService){
         this.categoryService = categoryService;
     }
-
-
 
 
     @GetMapping({"/", "list"})

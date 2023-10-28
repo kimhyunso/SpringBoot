@@ -13,11 +13,6 @@ import lombok.*;
 @Builder
 public class CategoryDTO {
 
-
     private String cateIdx;
     private String content;
-    private String isUpper;
-    private String isOrd;
-    private String isShow;
-    private String isDrop;
 }

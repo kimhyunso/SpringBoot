@@ -19,10 +19,6 @@ public class Category {
     private String cateIdx;
     @Column(name = "content")
     private String content;
-    @Column(name = "is_upper")
-    private String isUpper;
-    @Column(name = "is_ord")
-    private String isOrd;
     @Column(name = "is_show")
     private String isShow;
     @Column(name = "is_drop")
@@ -32,9 +28,6 @@ public class Category {
         return CategoryBuilder()
                 .cateIdx(dto.getCateIdx())
                 .content(dto.getContent())
-                .isUpper(dto.getIsUpper())
-                .isOrd(dto.getIsOrd())
-                .isShow(dto.getIsShow())
-                .isDrop(dto.getIsDrop());
+
     }
 }
