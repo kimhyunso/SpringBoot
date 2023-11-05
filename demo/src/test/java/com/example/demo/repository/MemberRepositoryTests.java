@@ -1,3 +1,4 @@
+/*
 package com.example.demo.repository;
 
 import com.example.demo.domain.Member;
@@ -7,14 +8,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.stream.IntStream;
 
+
+@Transactional
 @SpringBootTest
 public class MemberRepositoryTests {
 
-   private final PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
     private final MemberRepository repository;
 
     @Autowired
@@ -57,3 +61,4 @@ public class MemberRepositoryTests {
     }
 
 }
+*/

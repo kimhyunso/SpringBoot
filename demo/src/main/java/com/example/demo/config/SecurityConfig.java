@@ -1,3 +1,4 @@
+/*
 package com.example.demo.config;
 
 import jakarta.servlet.DispatcherType;
@@ -49,4 +50,6 @@ public class SecurityConfig{
 
         return http.build();
     }
+
 }
+*/

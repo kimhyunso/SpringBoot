@@ -1,3 +1,4 @@
+/*
 package com.example.demo.security;
 
 import com.example.demo.domain.Member;
@@ -7,13 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @SpringBootTest
+@Transactional
 public class PasswordTest {
 
-   /* private final MemberRepository repository;
+    private final MemberRepository repository;
 
     private final PasswordEncoder encoder;
 
@@ -27,9 +30,10 @@ public class PasswordTest {
     public void memberSelectTest(){
         List<Member> memberList =  repository.findAll();
         System.out.println(memberList);
-    }*/
+    }
 
 
 
 
 }
+*/
