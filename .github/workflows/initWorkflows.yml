@@ -50,4 +50,6 @@ jobs:
       with:
          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
          script: scp *.jar ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/volume1/docker/
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         
     
