@@ -6,14 +6,14 @@ import lombok.*;
 
 
 
-@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class CategoryDTO {
 
-    private String cateIdx;
+    private Long cateIdx;
     private String content;
-    private String test;
+    private String isShow;
+    private String isDrop;
 }

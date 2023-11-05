@@ -16,18 +16,20 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cate_idx")
-    private String cateIdx;
+    private Long cate_idx;
     @Column(name = "content")
     private String content;
     @Column(name = "is_show")
-    private String isShow;
+    private String is_show;
     @Column(name = "is_drop")
-    private String isDrop;
+    private String is_drop;
 
     public static CategoryBuilder builder(CategoryDTO dto) {
         return CategoryBuilder()
-                .cateIdx(dto.getCateIdx())
-                .content(dto.getContent());
+                .cate_idx(dto.getCateIdx())
+                .content(dto.getContent())
+                .is_show(dto.getIsShow())
+                .is_drop(dto.getIsDrop());
 
     }
 }

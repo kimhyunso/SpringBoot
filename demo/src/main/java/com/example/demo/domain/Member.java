@@ -17,15 +17,16 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Getter
+@Table(name = "MEMBER")
 @Builder(builderMethodName = "MemberBuilder")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, name="email")
+    private Long member_id;
+
+    @Column(name = "email")
     private String email;
-
-
     @Column(name="password")
     private String password;
     @Column(name="name")
@@ -49,6 +50,7 @@ public class Member {
 
     public static MemberBuilder builder(MemberDTO dto) {
         return MemberBuilder()
+                .member_id(dto.getMemberIdx())
                 .email(dto.getEmail())
                 .phoneNum(dto.getPhoneNum())
                 .ip(dto.getIp())
