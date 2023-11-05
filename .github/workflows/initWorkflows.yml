@@ -40,9 +40,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: Download artifact
+      uses: action/download-artifact@v2
+      with:
+        name: cicdsample
     - name: Setup SSH
       uses: webfactory/ssh-agent@v0.5.4
       with:
          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-         script: scp * ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/volume1/docker/
+         script: scp *.jar ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/volume1/docker/
     
