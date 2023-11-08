@@ -33,10 +33,15 @@ public class Member {
     private String name;
     @Column(name="phone_num")
     private String phoneNum;
+
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="reg_date")
     private Date regDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="modify_date")
     private Date modifyDate;
+
     @Column(name="ip")
     private String ip;
 
@@ -54,10 +59,8 @@ public class Member {
                 .email(dto.getEmail())
                 .phoneNum(dto.getPhoneNum())
                 .ip(dto.getIp())
-                .modifyDate(dto.getModifyDate())
                 .password(dto.getPassword())
-                .name(dto.getName())
-                .regDate(dto.getRegDate());
+                .name(dto.getName());
     }
 
 }

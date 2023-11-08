@@ -23,8 +23,6 @@ public class MemberDTO {
     private String password;
     private String name;
     private String phoneNum;
-    private Date regDate;
-    private Date modifyDate;
     private String ip;
 
 }
