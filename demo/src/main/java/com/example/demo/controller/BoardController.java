@@ -24,19 +24,11 @@ public class BoardController {
     }
 
 
-    /* @GetMapping({"/", "list"})
+    @GetMapping({"/", "list"})
     public String list(Model model){
         // model.addAttribute("categoryList", categoryService.getCategoryList());
         // model.addAttribute("subCategoryList", categoryService.findByIsUpperNotIn(0L));
         return "index";
-    }*/
-
-    @ResponseBody
-    @GetMapping("/")
-    public String lists(){
-        return "hello-spring";
     }
-
-
 
 }
