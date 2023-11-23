@@ -5,7 +5,7 @@
 
 </style>
 
-<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><i class="bi bi-house-heart-fill"></i> ThinkingRunning</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,8 +13,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="&#45;&#45;bs-scroll-height: 100px;">
+
                 <th:block th:each="category: ${categoryList}">
-                    <li th:if="category.isDropdown == 0">
+                    <li th:if="category.is_drop == 0">
                         <a href="테스트" class="nav-link" aria-current="page">[[${category.content}]]</a>
                     </li>
 
@@ -30,6 +31,7 @@
                         </ul>
                     </li>
                 </th:block>
+
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -37,7 +39,7 @@
             </form>
         </div>
     </div>
-</nav>-->
+</nav>
 
 <div class="d-flex flex-row-reverse">
     <button type="button" id="login" class="btn btn-primary p-2 mx-2">로그인</button>

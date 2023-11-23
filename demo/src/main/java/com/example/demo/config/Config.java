@@ -14,4 +14,6 @@ public class Config {
     public MemberService memberService(){
         return new MemberService(memberRepository);
     }
+
+
 }

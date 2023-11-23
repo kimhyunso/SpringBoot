@@ -1,11 +1,16 @@
-/*
+
 package com.example.demo.repository;
 
 import com.example.demo.domain.Category;
 import com.example.demo.dto.CategoryDTO;
+import com.example.demo.service.CategoryService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.test.util.AssertionErrors;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
@@ -15,39 +20,44 @@ import java.util.stream.IntStream;
 @Transactional
 public class CategoryRepositoryTests {
 
-    private final CategoryRepository repository;
+    private CategoryService categoryService;
 
     @Autowired
-    public CategoryRepositoryTests(CategoryRepository repository){
-        this.repository = repository;
+    public CategoryRepositoryTests(CategoryService categoryService){
+        this.categoryService = categoryService;
     }
+
 
     @Test
-    public void saveTest(){
-        Random rand = new Random();
-
-        IntStream.rangeClosed(6, 10).forEach(i->{
-
-            CategoryDTO dto = new CategoryDTO();
-            dto.setContent("테스트"+ i);
-            dto.setIsShow("1");
-            dto.setIsDrop("1");
-
-            Category category = Category.builder(dto).build();
-            repository.save(category);
-        });
+    public void getLists(){
+        Assertions.assertNotNull(categoryService.getCategoryList());
     }
 
-    @Test
-    public void selectNotIn(){
-
-        System.out.println(repository.findByIsUpperNotIn(0L));
-
-    }
-
-
-
+//    @Test
+//    public void saveTest(){
+//
+//        Random rand = new Random();
+//
+//        IntStream.rangeClosed(6, 10).forEach(i->{
+//
+//            CategoryDTO categoryDTO = CategoryDTO.builder()
+//                    .content("테스트" + i)
+//                    .isShow("1")
+//                    .isDrop("1")
+//                    .build();
+//
+//            Category category = Category.builder(categoryDTO).build();
+//            categoryService.getCategoryList();
+//        });
+//    }
+//
+//    @Test
+//    public void selectNotIn(){
+//
+//        // System.out.println(repository.findByIsUpperNotIn(0L));
+//
+//    }
 
 
 }
-*/
+

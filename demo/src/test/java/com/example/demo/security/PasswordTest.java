@@ -1,4 +1,4 @@
-/*
+
 package com.example.demo.security;
 
 import com.example.demo.domain.Member;
@@ -16,24 +16,24 @@ import java.util.List;
 @Transactional
 public class PasswordTest {
 
-    private final MemberRepository repository;
-
-    private final PasswordEncoder encoder;
-
-    @Autowired
-    public PasswordTest(PasswordEncoder encoder, MemberRepository repository){
-        this.encoder = encoder;
-        this.repository = repository;
-    }
-
-    @Test
-    public void memberSelectTest(){
-        List<Member> memberList =  repository.findAll();
-        System.out.println(memberList);
-    }
+//    private final MemberRepository repository;
+//
+//    private final PasswordEncoder encoder;
+//
+//    @Autowired
+//    public PasswordTest(PasswordEncoder encoder, MemberRepository repository){
+//        this.encoder = encoder;
+//        this.repository = repository;
+//    }
+//
+//    @Test
+//    public void memberSelectTest(){
+//        List<Member> memberList =  repository.findAll();
+//        System.out.println(memberList);
+//    }
 
 
 
 
 }
-*/
+

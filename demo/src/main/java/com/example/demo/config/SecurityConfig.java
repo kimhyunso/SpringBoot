@@ -17,37 +17,38 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@Log4j2
-@EnableWebSecurity
-@EnableMethodSecurity
-public class SecurityConfig{
-
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().disable()
-                .authorizeHttpRequests(request -> request
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/status", "/images/**", "/member/join", "/auth/join", "/").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin(login -> login
-                        .loginPage("/member/login")
-                        .loginProcessingUrl("/login-process")
-                        .usernameParameter("userId")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
-                )
-                .logout(Customizer.withDefaults());
-
-        return http.build();
-    }
-
-}
+//@Configuration
+//@Log4j2
+//@EnableWebSecurity
+//@EnableMethodSecurity
+//public class SecurityConfig{
+//
+//    @Bean
+//    PasswordEncoder passwordEncoder(){
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+////        http.csrf().disable().cors().disable()
+////                .authorizeHttpRequests(request -> request
+////                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+////                        .requestMatchers("/status", "/images/**", "/member/join", "/auth/join", "/").permitAll()
+////                        .anyRequest().authenticated()
+////                )
+////                .formLogin(login -> login
+////                        .loginPage("/member/login")
+////                        .loginProcessingUrl("/login-process")
+////                        .usernameParameter("userId")
+////                        .passwordParameter("password")
+////                        .defaultSuccessUrl("/", true)
+////                        .permitAll()
+////                )
+////                .logout(Customizer.withDefaults());
+////
+////        return http.build();
+//        return null;
+//    }
+//
+//}
