@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Getter
+@Setter
 @Builder(builderMethodName = "CategoryBuilder")
 public class Category {
 
@@ -49,6 +50,14 @@ public class Category {
                 .content(dto.getContent())
                 .is_show(dto.getIsShow())
                 .is_drop(dto.getIsDrop());
-
     }
+
+    public void update(CategoryDTO dto){
+        setCate_idx(dto.getCateIdx());
+        setContent(dto.getContent());
+        setIs_show(dto.getIsShow());
+        setIs_drop(dto.getIsDrop());
+    }
+
+
 }
