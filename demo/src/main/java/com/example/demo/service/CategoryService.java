@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+
 @Slf4j
 public class CategoryService {
 
@@ -67,21 +67,16 @@ public class CategoryService {
     @Transactional
     public void update(CategoryDTO categoryDTO){
         Optional<Category> category = findOne(categoryDTO.getCateIdx());
-        category.ifPresent(domain->domain.update(categoryDTO));
+
+        if (category.isPresent())
+            category.get().update(categoryDTO);
     }
 
 
-
     @Transactional
-    public void delete(CategoryDTO categoryDTO){
-        Category category = Category.CategoryBuilder()
-                .cate_idx(categoryDTO.getCateIdx())
-                .is_show(categoryDTO.getIsShow())
-                .is_drop(categoryDTO.getIsDrop())
-                .content(categoryDTO.getContent())
-                .build();
-
-        repository.delete(category);
+    public void delete(Long category_id){
+        if (findOne(category_id).isPresent())
+            repository.delete(findOne(category_id).get());
     }
 
     @Transactional

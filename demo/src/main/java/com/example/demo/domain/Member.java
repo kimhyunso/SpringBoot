@@ -8,9 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @NoArgsConstructor
@@ -44,6 +42,10 @@ public class Member {
 
     @Column(name="ip")
     private String ip;
+
+    @OneToMany(mappedBy = "member")
+    private ArrayList<Board> boards = new ArrayList<Board>();
+
 
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default

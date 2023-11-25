@@ -81,11 +81,8 @@ public class CategoryRepositoryTests {
     public void deleteTest(){
 
         IntStream.rangeClosed(1, 10).forEach(i->{
-            CategoryDTO categoryDTO = CategoryDTO.builder()
-                    .cateIdx(Long.valueOf(i))
-                    .build();
 
-            categoryService.delete(categoryDTO);
+            categoryService.delete(Long.valueOf(i));
         });
 
     }

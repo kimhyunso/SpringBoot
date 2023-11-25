@@ -4,6 +4,9 @@ import com.example.demo.dto.CategoryDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Table(name = "category")
 @NoArgsConstructor
@@ -34,6 +37,9 @@ public class Category {
     @Column(name = "is_drop")
     private String is_drop;
 
+    @OneToMany(mappedBy = "category")
+    private ArrayList<Board> boards = new ArrayList<Board>();
+
 
     // 디자인 패턴
     // Builder == 가독성을 좋게하기위해서
@@ -44,13 +50,7 @@ public class Category {
     // category.setContent();
     // category.setIsShow();
 
-    public static CategoryBuilder builder(CategoryDTO dto) {
-        return CategoryBuilder()
-                .cate_idx(dto.getCateIdx())
-                .content(dto.getContent())
-                .is_show(dto.getIsShow())
-                .is_drop(dto.getIsDrop());
-    }
+
 
     public void update(CategoryDTO dto){
         setCate_idx(dto.getCateIdx());
