@@ -22,6 +22,6 @@ public class BoardDTO {
     private String board_type;
     private String writer;
     private String modifyer;
-    private Category categories;
-    private Member members;
+    private Category category;
+    private Member member;
 }

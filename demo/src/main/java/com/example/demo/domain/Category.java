@@ -25,8 +25,8 @@ public class Category {
     // tableA, tableB만들어서 (자동으로 만들어줄 수 있게끔 설정) tableB에 의해서 tableA에 primary key
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cate_idx")
-    private Long cate_idx;
+    @Column(name = "cate_id")
+    private Long cate_id;
 
     @Column(name = "content")
     private String content;
@@ -38,7 +38,7 @@ public class Category {
     private String is_drop;
 
     @OneToMany(mappedBy = "category")
-    private ArrayList<Board> boards = new ArrayList<Board>();
+    private List<Board> boards = new ArrayList<>();
 
 
     // 디자인 패턴
@@ -53,11 +53,13 @@ public class Category {
 
 
     public void update(CategoryDTO dto){
-        setCate_idx(dto.getCateIdx());
+        setCate_id(dto.getCateId());
         setContent(dto.getContent());
         setIs_show(dto.getIsShow());
         setIs_drop(dto.getIsDrop());
     }
+
+
 
 
 }

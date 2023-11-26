@@ -57,12 +57,12 @@ public class Board {
     private Date modify_at;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category categories;
+    @JoinColumn(name = "cate_id")
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
-    private Member members;
+    private Member member;
 
     public void update(BoardDTO boardDTO){
         setBoard_type(boardDTO.getBoard_type());
@@ -73,6 +73,25 @@ public class Board {
         setWriter(boardDTO.getWriter());
         setIs_secret(boardDTO.getIs_secret());
         setModifyer(boardDTO.getModifyer());
+        setCategory(boardDTO.getCategory());
+        setMember(boardDTO.getMember());
     }
+
+    public void setCategory(Category category){
+        if (this.category != null){
+            category.getBoards().remove(this);
+        }
+        category.getBoards().add(this);
+        this.category = category;
+    }
+
+    public void setMember(Member member){
+        if (this.member != null){
+            member.getBoards().remove(this);
+        }
+        member.getBoards().add(this);
+        this.member = member;
+    }
+
 
 }

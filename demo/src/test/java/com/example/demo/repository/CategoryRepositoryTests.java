@@ -1,35 +1,37 @@
 
 package com.example.demo.repository;
 
+import com.example.demo.domain.Board;
 import com.example.demo.domain.Category;
+import com.example.demo.dto.BoardDTO;
 import com.example.demo.dto.CategoryDTO;
+import com.example.demo.service.BoardService;
 import com.example.demo.service.CategoryService;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.parameters.P;
-import org.springframework.test.util.AssertionErrors;
-import org.springframework.transaction.annotation.Transactional;
 
+
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @SpringBootTest
-
 public class CategoryRepositoryTests {
 
     private CategoryService categoryService;
 
+    private BoardService boardService;
+
+
     @Autowired
-    public CategoryRepositoryTests(CategoryService categoryService){
+    public CategoryRepositoryTests(CategoryService categoryService, BoardService boardService){
         this.categoryService = categoryService;
+        this.boardService = boardService;
     }
 
 
@@ -44,11 +46,16 @@ public class CategoryRepositoryTests {
             int dropRan = random.nextInt(1);
 
 
+            List<BoardDTO> a = boardService.getBoardList();
+
+
+
             CategoryDTO categoryDTO = CategoryDTO.builder()
-                    .cateIdx(Long.valueOf(i))
+                    .cateId(Long.valueOf(i))
                     .isShow(String.valueOf(showRan))
                     .isDrop(String.valueOf(dropRan))
                     .content("테스트" + i)
+                    .boardLists(a)
                     .build();
 
             categoryService.save(categoryDTO);
@@ -67,7 +74,7 @@ public class CategoryRepositoryTests {
     public void updateTest(){
 
         CategoryDTO categoryDTO = CategoryDTO.builder()
-                .cateIdx(Long.valueOf(20))
+                .cateId(Long.valueOf(20))
                 .content("업데이트")
                 .isDrop("0")
                 .isShow("0")
@@ -99,4 +106,5 @@ public class CategoryRepositoryTests {
 
 
 }
+
 

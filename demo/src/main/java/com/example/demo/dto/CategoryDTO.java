@@ -1,9 +1,11 @@
 package com.example.demo.dto;
 
+import com.example.demo.domain.Board;
 import jakarta.persistence.*;
 import lombok.*;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -12,8 +14,10 @@ import lombok.*;
 @Builder
 public class CategoryDTO {
 
-    private Long cateIdx;
+    private Long cateId;
     private String content;
     private String isShow;
     private String isDrop;
+    private List<BoardDTO> boardLists;
+
 }

@@ -18,7 +18,6 @@ public class BoardService {
 
     private final BoardRepository repository;
 
-    @Autowired
     public BoardService(BoardRepository repository){
         this.repository = repository;
     }
