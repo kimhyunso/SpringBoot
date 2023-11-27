@@ -7,7 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.collection.spi.PersistentBag;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -30,30 +34,33 @@ public class Member {
     @Column(name="name")
     private String name;
     @Column(name="phone_num")
-    private String phoneNum;
+    private String phone_num;
 
-    @Temporal(TemporalType.TIMESTAMP)
+
     @Column(name="reg_date")
-    private Date regDate;
+    @CreationTimestamp
+    private LocalDateTime reg_date = LocalDateTime.now();
 
-    @Temporal(TemporalType.TIMESTAMP)
+
     @Column(name="modify_date")
-    private Date modifyDate;
+    @UpdateTimestamp
+    private LocalDateTime modify_date = LocalDateTime.now();
 
     @Column(name="ip")
     private String ip;
 
-    @OneToMany(mappedBy = "member")
-    private ArrayList<Board> boards = new ArrayList<Board>();
+    // PersistentBag ==> List
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+    private List<Board> boards = new ArrayList<Board>();
 
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @Builder.Default
-    private Set<MemberRole> roleSet = new HashSet<MemberRole>();
-
-    public void addMemberRole(MemberRole memberRole){
-        roleSet.add(memberRole);
-    }
+//    @ElementCollection(fetch = FetchType.LAZY)
+//    @Builder.Default
+//    private Set<MemberRole> roleSet = new HashSet<MemberRole>();
+//
+//    public void addMemberRole(MemberRole memberRole){
+//        roleSet.add(memberRole);
+//    }
 
     public static MemberBuilder builder(MemberDTO dto) {
         return MemberBuilder()

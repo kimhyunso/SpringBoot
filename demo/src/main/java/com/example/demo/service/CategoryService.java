@@ -23,81 +23,55 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    private final BoardRepository boardRepository;
 
-    public CategoryService(CategoryRepository categoryRepository, BoardRepository boardRepository) {
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.boardRepository = boardRepository;
     }
 
 
     @Transactional(readOnly = true)
     public List<CategoryDTO> getCategoryList() {
 
-        // 1. stream filter
-        // 2. findAllById
 
         return categoryRepository.findAll().stream()
                 .map(category -> {
-
-
-                  
-
-                    List<Board> a = boardRepository.findAllByCategory(category);
-
-
                     return CategoryDTO.builder()
                             .cateId(category.getCate_id())
                             .isDrop(category.getIs_drop())
                             .isShow(category.getIs_show())
                             .content(category.getContent())
-                            // .boardLists(boardRepository.findAllByCategory(category))
+                            .boardLists(category.getBoards())
                             .build();
                 }).collect(Collectors.toList());
     }
 
-    // JPQL
-//    public List<CategoryDTO> findByIsUpperNotIn(Long idx) {
-//        return repository.findByIsUpperNotIn(idx).stream()
-//                .map(category -> {
-//                    return CategoryDTO.builder()
-//                            .cateIdx(category.getCate_idx())
-//                            .isDrop(category.getIs_drop())
-//                            .isShow(category.getIs_show())
-//                            .content(category.getContent())
-//                            .build();
-//
-//                }).collect(Collectors.toList());
-//    }
+
 
     @Transactional
     public void save(CategoryDTO categoryDTO) {
-
-        Category category = Category.CategoryBuilder()
-                .is_drop(categoryDTO.getIsDrop())
-                .is_show(categoryDTO.getIsShow())
-                .cate_id(categoryDTO.getCateId())
-                .content(categoryDTO.getContent())
-                .build();
-        category.setBoards(boardRepository.findAllByCategory(category));
+        Category category = new Category();
+        category.convertToDomain(categoryDTO);
 
         categoryRepository.save(category);
     }
 
     @Transactional
     public void update(CategoryDTO categoryDTO){
-        Optional<Category> category = findOne(categoryDTO.getCateId());
+        Optional<Category> findCategory = findOne(categoryDTO.getCateId());
 
-        if (category.isPresent())
-            category.get().update(categoryDTO);
+        if (findCategory.isPresent())
+            findCategory.get().convertToDomain(categoryDTO);
+
     }
 
 
     @Transactional
     public void delete(Long category_id){
-        if (findOne(category_id).isPresent())
-            categoryRepository.delete(findOne(category_id).get());
+        Optional<Category> findCategory = findOne(category_id);
+        if (findCategory.isPresent())
+            categoryRepository.delete(findCategory.get());
     }
+
 
     @Transactional
     public Optional<Category> findOne(Long idx){

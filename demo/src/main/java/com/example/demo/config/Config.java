@@ -35,7 +35,7 @@ public class Config {
 
     @Bean
     public CategoryService categoryService(){
-        return new CategoryService(categoryRepository, boardRepository);
+        return new CategoryService(categoryRepository);
     }
 
 

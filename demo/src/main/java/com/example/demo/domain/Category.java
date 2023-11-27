@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import com.example.demo.dto.CategoryDTO;
+import com.example.demo.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,29 +38,20 @@ public class Category {
     @Column(name = "is_drop")
     private String is_drop;
 
-    @OneToMany(mappedBy = "category")
+    // 공부 필요!
+    // 디자인 패턴 : 프록시
+    // ============= 영속성 컨텍스트의 Lazy Loading =======
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Board> boards = new ArrayList<>();
 
 
-    // 디자인 패턴
-    // Builder == 가독성을 좋게하기위해서
-    // setter, getter
-    // Category category = new Category();
-    // category.setCate_idx();
-    // category.setCate_idx();
-    // category.setContent();
-    // category.setIsShow();
-
-
-
-    public void update(CategoryDTO dto){
+    public void convertToDomain(CategoryDTO dto){
         setCate_id(dto.getCateId());
         setContent(dto.getContent());
         setIs_show(dto.getIsShow());
         setIs_drop(dto.getIsDrop());
     }
-
-
 
 
 }

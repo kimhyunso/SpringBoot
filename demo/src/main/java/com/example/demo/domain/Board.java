@@ -1,10 +1,15 @@
 package com.example.demo.domain;
 
 import com.example.demo.dto.BoardDTO;
+import com.example.demo.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -46,15 +51,15 @@ public class Board {
     private String writer;
 
     @Column(name = "create_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date create_at;
+    @CreationTimestamp
+    private LocalDateTime create_at = LocalDateTime.now();
 
     @Column(name = "modifyer")
     private String modifyer;
 
     @Column(name = "modify_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modify_at;
+    @UpdateTimestamp
+    private LocalDateTime modify_at = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "cate_id")
@@ -64,7 +69,8 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public void update(BoardDTO boardDTO){
+    public void convertToDomain(BoardDTO boardDTO){
+
         setBoard_type(boardDTO.getBoard_type());
         setIs_notice(boardDTO.getIs_notice());
         setTitle(boardDTO.getTitle());
@@ -92,6 +98,9 @@ public class Board {
         member.getBoards().add(this);
         this.member = member;
     }
+
+
+
 
 
 }

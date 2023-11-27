@@ -16,7 +16,11 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Optional<Member> findOne(String userId) {
-        return memberRepository.findByEmail(userId);
+    public Optional<Member> findOne(Long memberId) {
+        return memberRepository.findById(memberId);
+    }
+
+    public Optional<Member> findOneByEmail(String email) {
+        return memberRepository.findByEmail(email);
     }
 }

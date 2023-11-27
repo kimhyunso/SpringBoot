@@ -47,17 +47,8 @@ public class BoardService {
     // R
     @Transactional
     public void save(BoardDTO boardDTO){
-        Board board = Board.builder()
-                .board_id(boardDTO.getBoard_id())
-                .board_type(boardDTO.getBoard_type())
-                .content_html(boardDTO.getContent_html())
-                .content_normal(boardDTO.getContent_normal())
-                .is_notice(boardDTO.getIs_notice())
-                .title(boardDTO.getTitle())
-                .writer(boardDTO.getWriter())
-                .is_secret(boardDTO.getIs_secret())
-                .modifyer(boardDTO.getModifyer())
-                .build();
+        Board board = new Board();
+        board.convertToDomain(boardDTO);
 
         repository.save(board);
     }
@@ -71,7 +62,7 @@ public class BoardService {
     // U
     @Transactional
     public void update(BoardDTO boardDTO){
-        findOne(boardDTO.getBoard_id()).get().update(boardDTO);
+        findOne(boardDTO.getBoard_id()).get().convertToDomain(boardDTO);
     }
 
     @Transactional

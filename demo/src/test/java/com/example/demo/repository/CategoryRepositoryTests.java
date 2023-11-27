@@ -1,61 +1,49 @@
 
 package com.example.demo.repository;
 
-import com.example.demo.domain.Board;
 import com.example.demo.domain.Category;
-import com.example.demo.dto.BoardDTO;
 import com.example.demo.dto.CategoryDTO;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.CategoryService;
-import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.IntStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 public class CategoryRepositoryTests {
 
     private CategoryService categoryService;
-
-    private BoardService boardService;
 
 
     @Autowired
     public CategoryRepositoryTests(CategoryService categoryService, BoardService boardService){
         this.categoryService = categoryService;
-        this.boardService = boardService;
-    }
 
+    }
 
     // C
     @Test
     public void saveTest(){
-        Random random = new Random();
+
 
         IntStream.rangeClosed(1, 10).forEach(i->{
 
-            int showRan = random.nextInt(1);
-            int dropRan = random.nextInt(1);
+            int min = 0;
+            int max = 1;
 
-
-            List<BoardDTO> a = boardService.getBoardList();
-
-
+            int randomInt = (int)Math.floor(Math.random() * (max - min + 1) + min);
 
             CategoryDTO categoryDTO = CategoryDTO.builder()
                     .cateId(Long.valueOf(i))
-                    .isShow(String.valueOf(showRan))
-                    .isDrop(String.valueOf(dropRan))
+                    .isShow(String.valueOf(randomInt))
+                    .isDrop(String.valueOf(randomInt))
                     .content("테스트" + i)
-                    .boardLists(a)
                     .build();
 
             categoryService.save(categoryDTO);
@@ -66,6 +54,14 @@ public class CategoryRepositoryTests {
     // R
     @Test
     public void getLists(){
+
+        categoryService.getCategoryList().forEach(category->{
+            category.getBoardLists().stream().forEach(b->{
+                assertNotNull(b.getTitle());
+            });
+
+        });
+
         assertNotNull(categoryService.getCategoryList());
     }
 
@@ -74,10 +70,10 @@ public class CategoryRepositoryTests {
     public void updateTest(){
 
         CategoryDTO categoryDTO = CategoryDTO.builder()
-                .cateId(Long.valueOf(20))
+                .cateId(Long.valueOf(5))
                 .content("업데이트")
-                .isDrop("0")
-                .isShow("0")
+                .isDrop("1")
+                .isShow("1")
                 .build();
 
         categoryService.update(categoryDTO);
@@ -87,7 +83,7 @@ public class CategoryRepositoryTests {
     @Test
     public void deleteTest(){
 
-        IntStream.rangeClosed(1, 10).forEach(i->{
+        IntStream.rangeClosed(2, 10).forEach(i->{
 
             categoryService.delete(Long.valueOf(i));
         });
@@ -97,11 +93,11 @@ public class CategoryRepositoryTests {
 
     @Test
     public void findOneTest(){
-        Long idx = 20L;
+        Long idx = 1L;
         Optional<Category> category = categoryService.findOne(idx);
         String content = category.get().getContent();
 
-        assertNull(content);
+        assertNotNull(content);
     }
 
 
