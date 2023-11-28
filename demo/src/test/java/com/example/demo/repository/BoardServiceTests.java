@@ -1,27 +1,21 @@
 package com.example.demo.repository;
 
-import com.example.demo.domain.Board;
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Member;
 import com.example.demo.dto.BoardDTO;
-import com.example.demo.dto.CategoryDTO;
-import com.example.demo.dto.MemberDTO;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.MemberService;
 import groovy.util.logging.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Slf4j
 @SpringBootTest
-public class BoardRepositoryTests {
+public class BoardServiceTests {
 
     @Autowired
     private BoardService boardService;

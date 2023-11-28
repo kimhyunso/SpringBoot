@@ -1,23 +1,14 @@
 
 package com.example.demo.repository;
 
-import com.example.demo.domain.Member;
-import com.example.demo.domain.MemberRole;
-import com.example.demo.dto.MemberDTO;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.stream.IntStream;
 
 
 @Transactional
 @SpringBootTest
-public class MemberRepositoryTests {
-
+public class MemberServiceTests {
+    
 //    private final PasswordEncoder encoder;
 ////    private final MemberRepository repository;
 

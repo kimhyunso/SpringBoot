@@ -57,19 +57,16 @@ public class CategoryService {
 
     @Transactional
     public void update(CategoryDTO categoryDTO){
-        Optional<Category> findCategory = findOne(categoryDTO.getCateId());
-
-        if (findCategory.isPresent())
-            findCategory.get().convertToDomain(categoryDTO);
+        findOne(categoryDTO.getCateId()).ifPresent(findCategory->{
+            findCategory.convertToDomain(categoryDTO);
+        });
 
     }
 
 
     @Transactional
     public void delete(Long category_id){
-        Optional<Category> findCategory = findOne(category_id);
-        if (findCategory.isPresent())
-            categoryRepository.delete(findCategory.get());
+        categoryRepository.deleteById(category_id);
     }
 
 

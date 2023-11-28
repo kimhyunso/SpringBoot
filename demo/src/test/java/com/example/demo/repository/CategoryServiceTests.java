@@ -15,17 +15,10 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
-public class CategoryRepositoryTests {
-
-    private CategoryService categoryService;
-
+public class CategoryServiceTests {
 
     @Autowired
-    public CategoryRepositoryTests(CategoryService categoryService, BoardService boardService){
-        this.categoryService = categoryService;
-
-    }
+    private CategoryService categoryService;
 
     // C
     @Test
@@ -70,7 +63,7 @@ public class CategoryRepositoryTests {
     public void updateTest(){
 
         CategoryDTO categoryDTO = CategoryDTO.builder()
-                .cateId(Long.valueOf(5))
+                .cateId(Long.valueOf(1))
                 .content("업데이트")
                 .isDrop("1")
                 .isShow("1")

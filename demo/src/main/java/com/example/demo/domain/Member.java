@@ -1,12 +1,10 @@
 package com.example.demo.domain;
 
+import com.example.demo.dto.BoardDTO;
 import com.example.demo.dto.CategoryDTO;
 import com.example.demo.dto.MemberDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.collection.spi.PersistentBag;
@@ -19,6 +17,7 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 @Getter
+@Setter
 @Table(name = "MEMBER")
 @Builder(builderMethodName = "MemberBuilder")
 public class Member {
@@ -62,14 +61,13 @@ public class Member {
 //        roleSet.add(memberRole);
 //    }
 
-    public static MemberBuilder builder(MemberDTO dto) {
-        return MemberBuilder()
-                .member_id(dto.getMemberIdx())
-                .email(dto.getEmail())
-                .phoneNum(dto.getPhoneNum())
-                .ip(dto.getIp())
-                .password(dto.getPassword())
-                .name(dto.getName());
+
+    public void convertToDomain(MemberDTO memberDTO){
+        setMember_id(memberDTO.getMemberIdx());
+        setIp(memberDTO.getIp());
+        setName(memberDTO.getName());
+        setEmail(memberDTO.getEmail());
+        setPhone_num(memberDTO.getPhoneNum());
     }
 
 }

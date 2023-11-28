@@ -55,19 +55,21 @@ public class BoardService {
 
     @Transactional
     public Optional<Board> findOne(Long board_id){
-        return repository.findById(board_id).stream().findFirst();
+        return repository.findById(board_id);
     }
 
 
     // U
     @Transactional
     public void update(BoardDTO boardDTO){
-        findOne(boardDTO.getBoard_id()).get().convertToDomain(boardDTO);
+        findOne(boardDTO.getBoard_id()).ifPresent(findBoard->{
+            findBoard.convertToDomain(boardDTO);
+        });
     }
 
     @Transactional
     public void delete(Long board_id){
-        repository.delete(findOne(board_id).get());
+        repository.deleteById(board_id);
     }
 
 
