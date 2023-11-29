@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.domain.AttachFile;
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Member;
 
@@ -7,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +27,8 @@ public class BoardDTO {
     private String modifyer;
     private Category category;
     private Member member;
+
+    private List<AttachFile> attachFiles;
+    
+
 }

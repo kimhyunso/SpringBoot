@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,6 +70,9 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    private List<AttachFile> attachFiles = new ArrayList<>();
+
     public void convertToDomain(BoardDTO boardDTO){
 
         setBoard_type(boardDTO.getBoard_type());
@@ -98,6 +102,7 @@ public class Board {
         member.getBoards().add(this);
         this.member = member;
     }
+
 
 
 

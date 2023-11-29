@@ -75,4 +75,9 @@ public class CategoryService {
         return categoryRepository.findById(idx).stream().findFirst();
     }
 
+    @Transactional
+    public long count(){
+        return categoryRepository.count();
+    }
+
 }

@@ -52,6 +52,9 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
     private List<Board> boards = new ArrayList<Board>();
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+    private List<AttachFile> attachFiles = new ArrayList<>();
+
 
 //    @ElementCollection(fetch = FetchType.LAZY)
 //    @Builder.Default

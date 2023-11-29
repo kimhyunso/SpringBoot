@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BoardService {
 
-    private final BoardRepository repository;
+    private final BoardRepository boardRepository;
 
-    public BoardService(BoardRepository repository){
-        this.repository = repository;
+    public BoardService(BoardRepository boardRepository){
+        this.boardRepository = boardRepository;
     }
 
     // C
@@ -27,7 +27,7 @@ public class BoardService {
     public List<BoardDTO> getBoardList(){
 
 
-        return repository.findAll().stream()
+        return boardRepository.findAll().stream()
                 .map(board ->{
                     return BoardDTO.builder()
                             .board_id(board.getBoard_id())
@@ -50,12 +50,12 @@ public class BoardService {
         Board board = new Board();
         board.convertToDomain(boardDTO);
 
-        repository.save(board);
+        boardRepository.save(board);
     }
 
     @Transactional
     public Optional<Board> findOne(Long board_id){
-        return repository.findById(board_id);
+        return boardRepository.findById(board_id);
     }
 
 
@@ -69,9 +69,12 @@ public class BoardService {
 
     @Transactional
     public void delete(Long board_id){
-        repository.deleteById(board_id);
+        boardRepository.deleteById(board_id);
     }
 
-
+    @Transactional
+    public long count(){
+        return boardRepository.count();
+    }
 
 }

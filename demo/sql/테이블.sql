@@ -36,14 +36,17 @@ VALUES(1, '0', '타이틀', '내용', '<div>내용</div>', '0', '종류', 'membe
 
 
 CREATE TABLE attach_file(
-fileIdx INT PRIMARY KEY,
-fileName VARCHAR(255) NOT NULL,
-fileSize INT NOT NULL,
-orgFileName VARCHAR(255) NOT NULL,
-regDate DATETIME NOT NULL,
-modifyDate DATETIME,
-downCnt INT DEFAULT 0,
-boardIdx INT NOT NULL
+file_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+file_name VARCHAR(255) NOT NULL,
+file_size INT NOT NULL,
+org_name VARCHAR(255) NOT NULL,
+create_at DATETIME NOT NULL,
+modify_at DATETIME,
+down_cnt INT DEFAULT 0,
+board_id BIGINT NOT NULL,
+member_id BIGINT NOT NULL,
+CONSTRAINT FK_board_attach FOREIGN KEY (board_id) REFERENCES board(board_id),
+CONSTRAINT FK_member_attach FOREIGN KEY (member_id) REFERENCES member(member_id)
 );
 
 

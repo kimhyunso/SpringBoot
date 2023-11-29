@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.domain.Board;
+import com.example.demo.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +19,7 @@ public class AttachFileDTO {
     private Integer fileSize;
     private String orgName;
     private Integer downCnt;
-
-
+    private Board board;
+    private Member member;
 
 }

@@ -59,4 +59,9 @@ public class LogService {
         logRepository.deleteById(logId);
     }
 
+    @Transactional
+    public void count(){
+        logRepository.count();
+    }
+
 }
