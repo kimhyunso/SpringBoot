@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.service;
 
 import com.example.demo.dto.LogDTO;
 import com.example.demo.service.LogService;

@@ -73,6 +73,11 @@ public class Board {
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<AttachFile> attachFiles = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
+
+
     public void convertToDomain(BoardDTO boardDTO){
 
         setBoard_type(boardDTO.getBoard_type());

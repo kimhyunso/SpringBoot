@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.domain.Board;
+import com.example.demo.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,4 +18,7 @@ public class CommentDTO {
     private String comment;
     private String writer;
     private String modifyer;
+    private Board board;
+    private Member member;
+
 }

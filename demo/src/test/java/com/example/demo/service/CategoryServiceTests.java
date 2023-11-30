@@ -1,5 +1,5 @@
 
-package com.example.demo.repository;
+package com.example.demo.service;
 
 import com.example.demo.domain.Category;
 import com.example.demo.dto.CategoryDTO;

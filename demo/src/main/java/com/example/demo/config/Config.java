@@ -22,14 +22,18 @@ public class Config {
 
     private final AttachRepository attachRepository;
 
+    private final CommentRepository commentRepository;
+
     @Autowired
     public Config(MemberRepository memberRepository, CategoryRepository categoryRepository,
-                  BoardRepository boardRepository, LogRepository logRepository, AttachRepository attachRepository){
+                  BoardRepository boardRepository, LogRepository logRepository,
+                  AttachRepository attachRepository, CommentRepository commentRepository){
         this.memberRepository = memberRepository;
         this.categoryRepository = categoryRepository;
         this.boardRepository = boardRepository;
         this.logRepository = logRepository;
         this.attachRepository = attachRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Bean
@@ -54,5 +58,8 @@ public class Config {
 
     @Bean
     public AttachFileService attachFile(){return new AttachFileService(attachRepository);}
+
+    @Bean
+    public CommentService commentService(){return new CommentService(commentRepository);}
 
 }

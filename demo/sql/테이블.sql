@@ -85,3 +85,18 @@ modify_at DATETIME
 )
 
 
+CREATE TABLE comment(
+comment_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+parent_id INT default 0,
+comment VARCHAR(255) NOT NULL,
+writer VARCHAR(255) NOT NULL,
+modifyer VARCHAR(255),
+create_at DATETIME NOT NULL,
+modify_at DATETIME,
+board_id BIGINT,
+member_id BIGINT,
+CONSTRAINT FK_board_comment FOREIGN KEY (board_id) REFERENCES board(board_id),
+CONSTRAINT FK_member_comment FOREIGN KEY (member_id) REFERENCES member(member_id)
+)
+
+

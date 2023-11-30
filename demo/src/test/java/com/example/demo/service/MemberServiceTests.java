@@ -1,5 +1,5 @@
 
-package com.example.demo.repository;
+package com.example.demo.service;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
