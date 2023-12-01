@@ -25,13 +25,15 @@ public class BoardController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/{id}/list")
-    public String boards(@PathVariable long id, Model model){
-        log.info("list ==========> id={}", id);
+    @GetMapping("/{cateId}/boards")
+    public String boards(@PathVariable long cateId, Model model){
         // TODO: AOP ==> categoryDTOList
         List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
         model.addAttribute("categoryList", categoryDTOList);
         return "board/list";
     }
+
+
+
 
 }
