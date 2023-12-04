@@ -6,8 +6,34 @@
       layout:fragment="Content"
 >
 
-<div>
-    관리자 페이지입니다.
-</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">번호</th>
+        <th scope="col">내용</th>
+        <th scope="col">비고</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="logList : ${logList}">
+        <th scope="row">[[${logList.logId}]]</th>
+        <td>[[${logList.content}]]</td>
+        <td><button class="btn btn-primary">확인하기</button></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+<ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+</ul>
+
+
 
 </html>

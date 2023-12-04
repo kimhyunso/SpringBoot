@@ -41,7 +41,7 @@ public class Log {
 
 
     public void convertToDomain(LogDTO logDTO){
-        setLog_id(logDTO.getLog_id());
+        setLog_id(logDTO.getLogId());
         setContent(logDTO.getContent());
         setUser_email(logDTO.getUserEmail());
         setIp(logDTO.getIp());

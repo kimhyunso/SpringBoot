@@ -10,7 +10,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 public class LogDTO {
-    private Long log_id;
+    private Long logId;
     private String content;
     private String userEmail;
     private String ip;

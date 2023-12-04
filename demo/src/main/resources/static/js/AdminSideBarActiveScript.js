@@ -1,18 +1,3 @@
-
-
-
-const aTagList = document.querySelectorAll('a.list-group-item');
-const spanList = document.querySelectorAll('span.manager');
-
-
-aTagList.forEach((item)=>{
-    item.addEventListener('click', ()=>tagActiveAndLink(event));
-});
-
-spanList.forEach((item)=>{
-    item.addEventListener('click', ()=>tagActive(event));
-});
-
 function tagActiveAndLink(event){
     const id = event.target.id;
     const className = event.target.className;
@@ -44,4 +29,3 @@ function tagActive(event){
 
     parentElement.classList.add("active");
 }
-

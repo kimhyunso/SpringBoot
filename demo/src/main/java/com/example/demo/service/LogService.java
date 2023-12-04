@@ -26,7 +26,7 @@ public class LogService {
     public List<LogDTO> getLogList(){
         return logRepository.findAll().stream().map(log->{
            return LogDTO.builder()
-                   .log_id(log.getLog_id())
+                   .logId(log.getLog_id())
                    .content(log.getContent())
                    .userEmail(log.getUser_email())
                    .build();
@@ -49,7 +49,7 @@ public class LogService {
     // update 할 때 Transactional을 처리하지 않으면 commit 하지 않음
     @Transactional
     public void update(LogDTO logDTO){
-        findOne(logDTO.getLog_id()).ifPresent(findLog->{
+        findOne(logDTO.getLogId()).ifPresent(findLog->{
             findLog.convertToDomain(logDTO);
         });
     }
