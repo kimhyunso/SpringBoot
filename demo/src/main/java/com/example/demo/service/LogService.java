@@ -5,6 +5,7 @@ import com.example.demo.dto.LogDTO;
 import com.example.demo.repository.LogRepository;
 import groovy.util.logging.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public class LogService {
 
 
     @Transactional
-    public List<LogDTO> getLogList(){
-        return logRepository.findAll().stream().map(log->{
+    public List<LogDTO> getLogList(Pageable pageable){
+        return logRepository.findAll(pageable).stream().map(log->{
            return LogDTO.builder()
                    .logId(log.getLog_id())
                    .content(log.getContent())

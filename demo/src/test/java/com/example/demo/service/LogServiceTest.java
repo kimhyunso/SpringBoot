@@ -1,19 +1,21 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.LogDTO;
-import com.example.demo.service.LogService;
+import com.example.demo.dto.PageResultDTO;
+import groovy.util.logging.Log;
 import groovy.util.logging.Slf4j;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.jaxb.SpringDataJaxb;
+
 
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-
 @Slf4j
 @SpringBootTest
 public class LogServiceTest {
@@ -21,16 +23,22 @@ public class LogServiceTest {
     @Autowired
     private LogService logService;
 
+
+
+
     @Test
     public void getLogListTest(){
-        assertNull(logService.getLogList());
+        Pageable pageable =  PageRequest.of(0, 5);
+
+
+        assertNull(logService.getLogList(pageable));
     }
 
     @Test
     public void saveTest(){
         IntStream.rangeClosed(1, 10).forEach(i->{
             LogDTO logDTO = LogDTO.builder()
-                    .log_id(Long.valueOf(i))
+                    .logId(Long.valueOf(i))
                     .content("로그내용" + i)
                     .userEmail("유저이름" + i)
                     .ip("192.168.0." + i)
@@ -44,7 +52,7 @@ public class LogServiceTest {
     public void updateTest(){
 
         LogDTO logDTO = LogDTO.builder()
-                .log_id(Long.valueOf(12))
+                .logId(Long.valueOf(12))
                 .content("업데이트 로그")
                 .userEmail("변경된 이메일")
                 .ip("123.123.100.0")
