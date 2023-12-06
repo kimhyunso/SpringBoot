@@ -7,9 +7,11 @@ import com.example.demo.dto.PageResultDTO;
 import com.example.demo.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,15 +30,17 @@ import java.util.List;
 // Restful => HATEOAS
 
 
+// TODO: Sort를 사용하면 snake_case 파싱 ==> _(언더바) 사라짐 ==> entity에서 찾지 못함
+// 1. SnakeCaseFilter 적용
+// 2. Properties에 암묵적, 물리적인 것들을 고정시켜야한다.
 
-// TODO: 페이징처리 및 테스트 / Sort properties 에러 확인하기
+
+
 @Slf4j
 @Controller
 // @RestController
 @RequestMapping("/admin")
 public class AdminController {
-
-
 
 
     private final LogService logService;
@@ -46,14 +50,6 @@ public class AdminController {
         this.logService = logService;
     }
 
-
-//    @GetMapping("/api/v1/")
-//    public ResponseEntity<List<LogDTO>> adminCategory(Model model){
-//
-//        Pageable pageable = PageRequest.of(0, 5);
-//
-//        return ResponseEntity.ok().body(logService.getLogList(pageable));
-//    }
 //
 //    @GetMapping("/api/vi/log/{id}")
 //    public ResponseEntity<Log> adminTest1(Model model){
@@ -64,14 +60,12 @@ public class AdminController {
     // 쿼리스트링 : ?page=1&sort=descending
 
     @GetMapping("")
-    public String getLogPage(Model model){
-
+    public String getLogPage(Model model, @PageableDefault(sort = "log_id", direction = Sort.Direction.DESC, size = 10) Pageable pageable){
 
         // descending : 내림차순
         // ascending : 오름차순
         // Sort sort = Sort.by("log_id").descending();
 
-        Pageable pageable = PageRequest.of(0, 10);
         model.addAttribute("logList", logService.getLogList(pageable));
         // model.addAttribute("pageNo", pageNo);
         // model.addAttribute("pageable", pageable);

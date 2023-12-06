@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.jaxb.SpringDataJaxb;
 
 
@@ -24,12 +25,10 @@ public class LogServiceTest {
     private LogService logService;
 
 
-
-
     @Test
     public void getLogListTest(){
-        Pageable pageable =  PageRequest.of(0, 5);
-
+        // Sort sort = Sort.by("log_id").descending();
+        Pageable pageable =  PageRequest.of(0, 5, Sort.Direction.DESC, "log_id");
 
         assertNull(logService.getLogList(pageable));
     }
