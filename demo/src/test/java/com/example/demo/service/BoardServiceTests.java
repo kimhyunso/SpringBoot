@@ -46,16 +46,15 @@ public class BoardServiceTests {
 
         IntStream.rangeClosed(1, 10).forEach(i->{
             BoardDTO boardDTO = BoardDTO.builder()
-                    .board_id(Long.valueOf(i))
+                    .boardId(Long.valueOf(i))
                     .writer("작성자" + i)
-                    .content_normal("내용" + i)
-                    .content_html("<div>" + "내용" + i + "</div>")
+                    .content("내용" + i)
+                    .contentHTML("<div>" + "내용" + i + "</div>")
                     .title("제목" + i)
-                    .is_secret('0')
-                    .is_notice('0')
+                    .isSecret('0')
+                    .isNotice('0')
                     .category(category)
                     .member(member)
-                    .board_type("취미")
                     .build();
 
             boardService.save(boardDTO);
@@ -69,17 +68,16 @@ public class BoardServiceTests {
         Member member = memberService.findOne(1L).get();
 
         BoardDTO boardDTO = BoardDTO.builder()
-                .board_id(25L)
-                .board_type("2")
+                .boardId(25L)
                 .title("업데이트 제목")
                 .modifyer("업데이트 사용자")
-                .content_html("<div>업데이트됨</div>")
+                .contentHTML("<div>업데이트됨</div>")
                 .writer("수정자")
-                .is_notice('1')
-                .is_secret('0')
+                .isNotice('1')
+                .isSecret('0')
                 .member(member)
                 .category(category)
-                .content_normal("본문내용 업데이트")
+                .content("본문내용 업데이트")
                 .build();
 
 

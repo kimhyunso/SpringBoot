@@ -23,8 +23,8 @@ public class APIAdminController {
         this.logService = logService;
     }
 
-    @GetMapping("/api/v1")
-    public ResponseEntity<Page<LogDTO>> getLogApi(@PageableDefault(sort = {"log_id"}, direction = Sort.Direction.DESC ,size = 10) Pageable pageable){
+    @GetMapping("/v1/api")
+    public ResponseEntity<Page<LogDTO>> getLogApi(@PageableDefault(sort = {"createAt"}, direction = Sort.Direction.DESC ,size = 5) Pageable pageable){
 
 
         return ResponseEntity.ok().body(logService.getLogList(pageable));

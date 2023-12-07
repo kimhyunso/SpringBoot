@@ -25,9 +25,9 @@ public class CommentService {
     public List<CommentDTO> getCommentList(){
         return commentRepository.findAll().stream().map(comment -> {
             return CommentDTO.builder()
-                    .commentId(comment.getComment_id())
-                    .parentId(comment.getParent_id())
-                    .comment(comment.getComment())
+                    .commentId(comment.getCommentId())
+                    .parentId(comment.getParentId())
+                    .content(comment.getContent())
                     .modifyer(comment.getModifyer())
                     .writer(comment.getWriter())
                     .board(comment.getBoard())

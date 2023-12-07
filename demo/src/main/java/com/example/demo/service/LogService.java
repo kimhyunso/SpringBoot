@@ -30,9 +30,9 @@ public class LogService {
     public Page<LogDTO> getLogList(Pageable pageable){
         return logRepository.findAll(pageable).map(log->{
            return LogDTO.builder()
-                   .logId(log.getLog_id())
+                   .logId(log.getLogId())
                    .content(log.getContent())
-                   .userEmail(log.getUser_email())
+                   .userEmail(log.getUserEmail())
                    .build();
         });
     }

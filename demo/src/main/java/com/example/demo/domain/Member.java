@@ -24,7 +24,8 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long member_id;
+    @Column(name = "memberId")
+    private Long memberId;
 
     @Column(name = "email")
     private String email;
@@ -32,18 +33,18 @@ public class Member {
     private String password;
     @Column(name="name")
     private String name;
-    @Column(name="phone_num")
-    private String phone_num;
+    @Column(name="phoneNum")
+    private String phoneNum;
 
 
-    @Column(name="reg_date")
+    @Column(name="createAt")
     @CreationTimestamp
-    private LocalDateTime reg_date = LocalDateTime.now();
+    private LocalDateTime createAt = LocalDateTime.now();
 
 
-    @Column(name="modify_date")
+    @Column(name="modifyAt")
     @UpdateTimestamp
-    private LocalDateTime modify_date = LocalDateTime.now();
+    private LocalDateTime modifyAt = LocalDateTime.now();
 
     @Column(name="ip")
     private String ip;
@@ -59,6 +60,7 @@ public class Member {
     private List<Comment> comments = new ArrayList<>();
 
 
+
 //    @ElementCollection(fetch = FetchType.LAZY)
 //    @Builder.Default
 //    private Set<MemberRole> roleSet = new HashSet<MemberRole>();
@@ -69,11 +71,11 @@ public class Member {
 
 
     public void convertToDomain(MemberDTO memberDTO){
-        setMember_id(memberDTO.getMemberIdx());
-        setIp(memberDTO.getIp());
-        setName(memberDTO.getName());
-        setEmail(memberDTO.getEmail());
-        setPhone_num(memberDTO.getPhoneNum());
+        this.setMemberId(memberDTO.getMemberId());
+        this.setIp(memberDTO.getIp());
+        this.setName(memberDTO.getName());
+        this.setEmail(memberDTO.getEmail());
+        this.setPhoneNum(memberDTO.getPhoneNum());
     }
 
 }

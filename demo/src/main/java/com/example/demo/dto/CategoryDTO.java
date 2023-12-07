@@ -18,11 +18,8 @@ public class CategoryDTO {
 
     private Long cateId;
     private String content;
-    private String isShow;
-    private String isDrop;
+    private char isShow;
+    private char isDrop;
     private List<Board> boardLists;
-
-
-
 
 }

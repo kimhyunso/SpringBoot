@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.LogDTO;
-import com.example.demo.dto.PageResultDTO;
-import groovy.util.logging.Log;
 import groovy.util.logging.Slf4j;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 
 
 import java.util.stream.IntStream;

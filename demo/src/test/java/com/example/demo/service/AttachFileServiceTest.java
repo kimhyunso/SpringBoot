@@ -68,9 +68,9 @@ public class AttachFileServiceTest {
         String uuid = UUID.randomUUID().toString();
 
         AttachFileDTO attachFileDTO = AttachFileDTO.builder()
-                .fileId(attachFile.getFile_id())
+                .fileId(attachFile.getFileId())
                 .fileName(uuid + "업데이트파일-" + 1)
-                .fileSize(attachFile.getFile_size())
+                .fileSize(attachFile.getFileSize())
                 .orgName("업데이트파일-" + 1)
                 .member(attachFile.getMember())
                 .board(attachFile.getBoard())

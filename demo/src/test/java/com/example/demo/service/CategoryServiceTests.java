@@ -34,8 +34,8 @@ public class CategoryServiceTests {
 
             CategoryDTO categoryDTO = CategoryDTO.builder()
                     .cateId(Long.valueOf(i))
-                    .isShow(String.valueOf(randomInt))
-                    .isDrop(String.valueOf(randomInt))
+                    .isShow((char)(randomInt - '0'))
+                    .isDrop((char)(randomInt - '0'))
                     .content("테스트" + i)
                     .build();
 
@@ -65,8 +65,8 @@ public class CategoryServiceTests {
         CategoryDTO categoryDTO = CategoryDTO.builder()
                 .cateId(Long.valueOf(1))
                 .content("업데이트")
-                .isDrop("1")
-                .isShow("1")
+                .isDrop('1')
+                .isShow('1')
                 .build();
 
         categoryService.update(categoryDTO);

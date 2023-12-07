@@ -23,11 +23,11 @@ public class AttachFileService {
         return attachRepository.findAll().stream()
                 .map(attachFile -> {
                     return AttachFileDTO.builder()
-                            .fileId(attachFile.getFile_id())
-                            .fileName(attachFile.getFile_name())
-                            .fileSize(attachFile.getFile_size())
-                            .orgName(attachFile.getOrg_name())
-                            .downCnt(attachFile.getDown_cnt())
+                            .fileId(attachFile.getFileId())
+                            .fileName(attachFile.getFileName())
+                            .fileSize(attachFile.getFileSize())
+                            .orgName(attachFile.getOrgName())
+                            .downCnt(attachFile.getDownCnt())
                             .board(attachFile.getBoard())
                             .member(attachFile.getMember())
                             .build();

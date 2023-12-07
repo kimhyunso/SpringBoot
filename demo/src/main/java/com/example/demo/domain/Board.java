@@ -26,48 +26,46 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id")
-    private Long board_id;
+    @Column(name = "boardId")
+    private Long boardId;
 
-    @Column(name = "is_notice")
-    private char is_notice;
+    @Column(name = "isNotice")
+    private char isNotice;
+
     @Column(name = "title")
     private String title;
 
-    @Column(name = "content_normal")
+    @Column(name = "content")
     @Lob
-    private String content_normal;
+    private String content;
 
-    @Column(name = "content_html")
+    @Column(name = "contentHTML")
     @Lob
-    private String content_html;
+    private String contentHTML;
 
-    @Column(name = "is_secret")
-    private char is_secret;
-
-    @Column(name = "board_type")
-    private String board_type;
+    @Column(name = "isSecret")
+    private char isSecret;
 
     @Column(name = "writer")
     private String writer;
 
-    @Column(name = "create_at")
+    @Column(name = "createAt")
     @CreationTimestamp
-    private LocalDateTime create_at = LocalDateTime.now();
+    private LocalDateTime createAt = LocalDateTime.now();
 
     @Column(name = "modifyer")
     private String modifyer;
 
-    @Column(name = "modify_at")
+    @Column(name = "modifyAt")
     @UpdateTimestamp
-    private LocalDateTime modify_at = LocalDateTime.now();
+    private LocalDateTime modifyAt = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "cate_id")
+    @JoinColumn(name = "cateId")
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "memberId")
     private Member member;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
@@ -78,18 +76,17 @@ public class Board {
     private List<Comment> comments = new ArrayList<>();
 
 
-    public void convertToDomain(BoardDTO boardDTO){
+    public void convertToDomain(BoardDTO dto){
 
-        setBoard_type(boardDTO.getBoard_type());
-        setIs_notice(boardDTO.getIs_notice());
-        setTitle(boardDTO.getTitle());
-        setContent_normal(boardDTO.getContent_normal());
-        setContent_html(boardDTO.getContent_html());
-        setWriter(boardDTO.getWriter());
-        setIs_secret(boardDTO.getIs_secret());
-        setModifyer(boardDTO.getModifyer());
-        setCategory(boardDTO.getCategory());
-        setMember(boardDTO.getMember());
+        this.setIsNotice(dto.getIsNotice());
+        this.setTitle(dto.getTitle());
+        this.setContent(dto.getContent());
+        this.setContentHTML(dto.getContentHTML());
+        this.setWriter(dto.getWriter());
+        this.setIsSecret(dto.getIsSecret());
+        this.setModifyer(dto.getModifyer());
+        this.setCategory(dto.getCategory());
+        this.setMember(dto.getMember());
     }
 
     public void setCategory(Category category){

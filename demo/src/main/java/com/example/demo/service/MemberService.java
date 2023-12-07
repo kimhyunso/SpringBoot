@@ -25,9 +25,9 @@ public class MemberService {
         return memberRepository.findAll().stream()
                 .map(member -> {
                     return MemberDTO.builder()
-                            .memberIdx(member.getMember_id())
+                            .memberId(member.getMemberId())
                             .ip(member.getIp())
-                            .phoneNum(member.getPhone_num())
+                            .phoneNum(member.getPhoneNum())
                             .name(member.getName())
                             .email(member.getEmail())
                             .build();
@@ -41,16 +41,7 @@ public class MemberService {
     }
 
 
-    public void duplicateEmail(String email){
-        findByEmail(email).ifPresent(findMember ->{
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
-        });
-    }
 
-    @Transactional
-    public Optional<Member> findByEmail(String email) {
-        return memberRepository.findByEmail(email);
-    }
 
 
     @Transactional
@@ -66,7 +57,7 @@ public class MemberService {
 
     @Transactional
     public void update(MemberDTO memberDTO){
-        findOne(memberDTO.getMemberIdx()).ifPresent(member -> {
+        findOne(memberDTO.getMemberId()).ifPresent(member -> {
             member.convertToDomain(memberDTO);
         });
     }
@@ -81,4 +72,20 @@ public class MemberService {
     public long count(){
         return memberRepository.count();
     }
+
+
+
+
+    @Transactional
+    public Optional<Member> findByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
+
+    protected void duplicateEmail(String email){
+        findByEmail(email).ifPresent(findMember ->{
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
+    }
+
+
 }

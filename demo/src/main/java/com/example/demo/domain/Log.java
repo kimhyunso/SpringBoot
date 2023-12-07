@@ -19,8 +19,8 @@ public class Log {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "log_id")
-    private Long log_id;
+    @Column(name = "logId")
+    private Long logId;
 
     @Column(name = "content")
     private String content;
@@ -28,22 +28,22 @@ public class Log {
     @Column(name = "ip")
     private String ip;
 
-    @Column(name = "user_email")
-    private String user_email;
+    @Column(name = "userEmail")
+    private String userEmail;
 
-    @Column(name = "create_at")
+    @Column(name = "createAt")
     @CreationTimestamp
-    private LocalDateTime create_at = LocalDateTime.now();
+    private LocalDateTime createAt = LocalDateTime.now();
 
-    @Column(name = "modify_at")
+    @Column(name = "modifyAt")
     @UpdateTimestamp
-    private LocalDateTime modify_at = LocalDateTime.now();
+    private LocalDateTime modifyAt = LocalDateTime.now();
 
 
-    public void convertToDomain(LogDTO logDTO){
-        setLog_id(logDTO.getLogId());
-        setContent(logDTO.getContent());
-        setUser_email(logDTO.getUserEmail());
-        setIp(logDTO.getIp());
+    public void convertToDomain(LogDTO dto){
+        this.setLogId(dto.getLogId());
+        this.setContent(dto.getContent());
+        this.setUserEmail(dto.getUserEmail());
+        this.setIp(dto.getIp());
     }
 }

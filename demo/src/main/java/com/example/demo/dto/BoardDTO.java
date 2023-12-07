@@ -16,19 +16,18 @@ import java.util.List;
 @Builder
 @Data
 public class BoardDTO {
-    private Long board_id;
-    private char is_notice;
+
+    private Long boardId;
+    private char isNotice;
     private String title;
-    private String content_normal;
-    private String content_html;
-    private char is_secret;
-    private String board_type;
+    private String content;
+    private String contentHTML;
+    private char isSecret;
     private String writer;
     private String modifyer;
     private Category category;
     private Member member;
 
     private List<AttachFile> attachFiles;
-    
 
 }

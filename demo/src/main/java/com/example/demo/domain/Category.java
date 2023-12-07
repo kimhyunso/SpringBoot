@@ -26,17 +26,17 @@ public class Category {
     // tableA, tableB만들어서 (자동으로 만들어줄 수 있게끔 설정) tableB에 의해서 tableA에 primary key
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cate_id")
-    private Long cate_id;
+    @Column(name = "cateId")
+    private Long cateId;
 
     @Column(name = "content")
     private String content;
 
-    @Column(name = "is_show")
-    private String is_show;
+    @Column(name = "isShow")
+    private char isShow;
 
-    @Column(name = "is_drop")
-    private String is_drop;
+    @Column(name = "isDrop")
+    private char isDrop;
 
     // 공부 필요!
     // 디자인 패턴 : 프록시
@@ -47,11 +47,9 @@ public class Category {
 
 
     public void convertToDomain(CategoryDTO dto){
-        setCate_id(dto.getCateId());
-        setContent(dto.getContent());
-        setIs_show(dto.getIsShow());
-        setIs_drop(dto.getIsDrop());
+        this.setCateId(dto.getCateId());
+        this.setContent(dto.getContent());
+        this.setIsShow(dto.getIsShow());
+        this.setIsDrop(dto.getIsDrop());
     }
-
-
 }

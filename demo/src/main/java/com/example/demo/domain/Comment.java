@@ -21,14 +21,14 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
-    private Long comment_id;
+    @Column(name = "commentId")
+    private Long commentId;
 
-    @Column(name = "parent_id")
-    private Integer parent_id;
+    @Column(name = "parentId")
+    private Integer parentId;
 
-    @Column(name = "comment")
-    private String comment;
+    @Column(name = "content")
+    private String content;
 
     @Column(name = "writer")
     private String writer;
@@ -36,20 +36,20 @@ public class Comment {
     @Column(name = "modifyer")
     private String modifyer;
 
-    @Column(name = "create_at")
+    @Column(name = "createAt")
     @CreationTimestamp
-    private LocalDateTime create_at = LocalDateTime.now();
+    private LocalDateTime createAt = LocalDateTime.now();
 
-    @Column(name = "modify_at")
+    @Column(name = "modifyAt")
     @UpdateTimestamp
-    private LocalDateTime modify_at = LocalDateTime.now();
+    private LocalDateTime modifyAt = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "boardId")
     private Board board;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "memberId")
     private Member member;
 
 
@@ -69,13 +69,15 @@ public class Comment {
         this.member = member;
     }
 
-    public void convertToDomain(CommentDTO commentDTO){
-        setComment_id(commentDTO.getCommentId());
-        setParent_id(commentDTO.getParentId());
-        setComment(commentDTO.getComment());
-        setWriter(commentDTO.getWriter());
-        setBoard(commentDTO.getBoard());
-        setMember(commentDTO.getMember());
-        setModifyer(commentDTO.getModifyer());
+    public void convertToDomain(CommentDTO dto){
+        this.setCommentId(dto.getCommentId());
+        this.setParentId(dto.getParentId());
+        this.setContent(dto.getContent());
+        this.setWriter(dto.getWriter());
+        this.setBoard(dto.getBoard());
+        this.setMember(dto.getMember());
+        this.setModifyer(dto.getModifyer());
     }
+
+
 }

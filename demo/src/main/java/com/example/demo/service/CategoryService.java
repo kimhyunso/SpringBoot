@@ -36,9 +36,9 @@ public class CategoryService {
         return categoryRepository.findAll().stream()
                 .map(category -> {
                     return CategoryDTO.builder()
-                            .cateId(category.getCate_id())
-                            .isDrop(category.getIs_drop())
-                            .isShow(category.getIs_show())
+                            .cateId(category.getCateId())
+                            .isDrop(category.getIsDrop())
+                            .isShow(category.getIsShow())
                             .content(category.getContent())
                             .boardLists(category.getBoards())
                             .build();

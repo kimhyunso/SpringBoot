@@ -15,7 +15,7 @@ public class CommentDTO {
 
     private Long commentId;
     private Integer parentId;
-    private String comment;
+    private String content;
     private String writer;
     private String modifyer;
     private Board board;

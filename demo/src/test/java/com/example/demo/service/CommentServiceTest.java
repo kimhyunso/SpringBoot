@@ -41,7 +41,7 @@ public class CommentServiceTest {
             CommentDTO commentDTO = CommentDTO.builder()
                     .commentId(Long.valueOf(i))
                     .writer("작성자" + i)
-                    .comment("댓글내용" + i)
+                    .content("댓글내용" + i)
                     .board(board)
                     .member(member)
                     .parentId(0)
@@ -59,7 +59,7 @@ public class CommentServiceTest {
 
         CommentDTO commentDTO = CommentDTO.builder()
                 .commentId(10L)
-                .comment("업데이트내용")
+                .content("업데이트내용")
                 .parentId(0)
                 .writer("업데이트작성자")
                 .board(board)

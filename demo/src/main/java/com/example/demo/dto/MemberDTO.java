@@ -18,7 +18,7 @@ import java.util.Date;
 @Builder
 public class MemberDTO {
 
-    private Long memberIdx;
+    private Long memberId;
     private String email;
     private String password;
     private String name;

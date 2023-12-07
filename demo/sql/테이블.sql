@@ -1,102 +1,102 @@
-CREATE TABLE IF NOT EXISTS category(
-cate_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-content VARCHAR(100) NOT NULL,
-is_drop CHAR(1) DEFAULT 0,
-is_show CHAR(1) DEFAULT 1
-);
-
-INSERT INTO category VALUES(1, '내용', '0', '1');
 
 
 
-
-CREATE TABLE board(
-board_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-is_notice CHAR(1) DEFAULT 0,
-title VARCHAR(255) NOT NULL,
-content_normal TEXT NOT NULL,
-content_html TEXT NOT NULL,
-is_secret CHAR(1) DEFAULT 0,
-board_type VARCHAR(100),
-writer VARCHAR(255) NOT NULL,
-create_at DATETIME NOT NULL,
-modifyer VARCHAR(255),
-modify_at DATETIME,
-cate_id BIGINT NOT NULL,
-member_id BIGINT NOT NULL,
-
-CONSTRAINT FK_category_board FOREIGN KEY (cate_id) REFERENCES category(cate_id),
-CONSTRAINT FK_member_board FOREIGN KEY (member_id) REFERENCES member(member_id)
-)
-
-INSERT INTO board(board_id, is_notice, title, content_normal, content_html, is_secret, board_type, writer, create_at, cate_id, member_id) 
-VALUES(1, '0', '타이틀', '내용', '<div>내용</div>', '0', '종류', 'member1', NOW(), 1, 1);
-
-
-
-
-CREATE TABLE attach_file(
-file_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-file_name VARCHAR(255) NOT NULL,
-file_size INT NOT NULL,
-org_name VARCHAR(255) NOT NULL,
-create_at DATETIME NOT NULL,
-modify_at DATETIME,
-down_cnt INT DEFAULT 0,
-board_id BIGINT NOT NULL,
-member_id BIGINT NOT NULL,
-CONSTRAINT FK_board_attach FOREIGN KEY (board_id) REFERENCES board(board_id),
-CONSTRAINT FK_member_attach FOREIGN KEY (member_id) REFERENCES member(member_id)
-);
-
-
-
-CREATE TABLE level_role_set(
-level_idx INT,
+CREATE TABLE IF NOT EXISTS levelRoleSet(
+levelIdx INT,
 role INT
 );
 
 
-CREATE TABLE member(
-member_id INT PRIMARY KEY,
+
+CREATE TABLE IF NOT EXISTS member(
+memberId BIGINT PRIMARY KEY,
 email VARCHAR(255) NOT NULL,
 password VARCHAR(255) NOT NULL,
 name VARCHAR(100) NOT NULL,
-phone_num VARCHAR(100) NOT NULL,
-reg_date DATETIME NOT NULL,
-modify_date DATETIME NOT NULL,
-ip INT NOT NULL,
-level_idx INT NOT NULL,
+phoneNum VARCHAR(100) NOT NULL,
+createAt DATETIME NOT NULL,
+modifyAt DATETIME,
+ip VARCHAR(255) NOT NULL,
+levelIdx INT NOT NULL,
 unique (email)
 );
 
-
-INSERT INTO member(member_id, email, ip, name, password, phone_num, reg_date) 
-VALUES(1, 'member1', '192.168.0.0', '사용자이름', '1234', '01012341234', NOW())
+INSERT INTO member VALUES(1, 'user@naver.com', SHA2('111', 256), 'user1', '01012341234', NOW(), NULL, '192.168.0.1', 1)
 
 
-CREATE TABLE log(
-log_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+
+
+
+CREATE TABLE IF NOT EXISTS category(
+cateId BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+content VARCHAR(100) NOT NULL,
+isDrop CHAR(1) DEFAULT 0,
+isShow CHAR(1) DEFAULT 1
+);
+
+
+
+
+CREATE TABLE IF NOT EXISTS board(
+boardId BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+isNotice CHAR(1) DEFAULT 0,
+title VARCHAR(255) NOT NULL,
+content TEXT NOT NULL,
+contentHTML TEXT NOT NULL,
+isSecret CHAR(1) DEFAULT 0,
+writer VARCHAR(255) NOT NULL,
+createAt DATETIME NOT NULL,
+modifyer VARCHAR(255),
+modifyAt DATETIME,
+cateId BIGINT NOT NULL,
+memberId BIGINT NOT NULL,
+
+CONSTRAINT FK_category_board FOREIGN KEY (cateId) REFERENCES category(cateId),
+CONSTRAINT FK_member_board FOREIGN KEY (memberId) REFERENCES member(memberId)
+);
+
+
+
+CREATE TABLE IF NOT EXISTS attachFile(
+fileId BIGINT PRIMARY KEY AUTO_INCREMENT,
+fileName VARCHAR(255) NOT NULL,
+fileSize INT NOT NULL,
+orgName VARCHAR(255) NOT NULL,
+createAt DATETIME NOT NULL,
+modifyAt DATETIME,
+downCnt INT DEFAULT 0,
+boardId BIGINT NOT NULL,
+memberId BIGINT NOT NULL,
+CONSTRAINT FK_board_attach FOREIGN KEY (boardId) REFERENCES board(boardId),
+CONSTRAINT FK_member_attach FOREIGN KEY (memberId) REFERENCES member(memberId)
+);
+
+
+CREATE TABLE IF NOT EXISTS comment(
+commentId BIGINT PRIMARY KEY AUTO_INCREMENT,
+parentId INT default 0,
 content VARCHAR(255) NOT NULL,
-ip VARCHAR(100) NOT NULL,
-user_email VARCHAR(255) NOT NULL,
-create_at DATETIME NOT NULL,
-modify_at DATETIME
-)
-
-
-CREATE TABLE comment(
-comment_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-parent_id INT default 0,
-comment VARCHAR(255) NOT NULL,
 writer VARCHAR(255) NOT NULL,
 modifyer VARCHAR(255),
-create_at DATETIME NOT NULL,
-modify_at DATETIME,
-board_id BIGINT,
-member_id BIGINT,
-CONSTRAINT FK_board_comment FOREIGN KEY (board_id) REFERENCES board(board_id),
-CONSTRAINT FK_member_comment FOREIGN KEY (member_id) REFERENCES member(member_id)
-)
+createAt DATETIME NOT NULL,
+modifyAt DATETIME,
+boardId BIGINT,
+memberId BIGINT,
+CONSTRAINT FK_board_comment FOREIGN KEY (boardId) REFERENCES board(boardId),
+CONSTRAINT FK_member_comment FOREIGN KEY (memberId) REFERENCES member(memberId)
+);
+
+
+CREATE TABLE IF NOT EXISTS log(
+logId BIGINT PRIMARY KEY AUTO_INCREMENT,
+content VARCHAR(255) NOT NULL,
+ip VARCHAR(100) NOT NULL,
+userEmail VARCHAR(255) NOT NULL,
+createAt DATETIME NOT NULL,
+modifyAt DATETIME
+);
+
+
 
 

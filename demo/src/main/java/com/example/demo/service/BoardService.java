@@ -30,14 +30,13 @@ public class BoardService {
         return boardRepository.findAll().stream()
                 .map(board ->{
                     return BoardDTO.builder()
-                            .board_id(board.getBoard_id())
-                            .board_type(board.getBoard_type())
-                            .content_html(board.getContent_html())
-                            .content_normal(board.getContent_normal())
-                            .is_notice(board.getIs_notice())
+                            .boardId(board.getBoardId())
+                            .content(board.getContent())
+                            .contentHTML(board.getContentHTML())
+                            .isNotice(board.getIsNotice())
                             .title(board.getTitle())
                             .writer(board.getWriter())
-                            .is_secret(board.getIs_secret())
+                            .isSecret(board.getIsSecret())
                             .modifyer(board.getModifyer())
                             .build();
                 }).collect(Collectors.toList());
@@ -62,7 +61,7 @@ public class BoardService {
     // U
     @Transactional
     public void update(BoardDTO boardDTO){
-        findOne(boardDTO.getBoard_id()).ifPresent(findBoard->{
+        findOne(boardDTO.getBoardId()).ifPresent(findBoard->{
             findBoard.convertToDomain(boardDTO);
         });
     }
