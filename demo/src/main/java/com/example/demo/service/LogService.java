@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -27,8 +28,9 @@ public class LogService {
 
 
     @Transactional
-    public Page<LogDTO> getLogList(Pageable pageable){
-        return logRepository.findAll(pageable).map(log->{
+    public Page<LogDTO> getLogList(Pageable pageable, Specification<Log> spec){
+
+        return logRepository.findAll(spec, pageable).map(log->{
            return LogDTO.builder()
                    .logId(log.getLogId())
                    .content(log.getContent())

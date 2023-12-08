@@ -8,6 +8,7 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer;
 
 @Configuration
 public class Config {
@@ -61,5 +62,13 @@ public class Config {
 
     @Bean
     public CommentService commentService(){return new CommentService(commentRepository);}
+
+    @Bean
+    public PageableHandlerMethodArgumentResolverCustomizer customizer(){
+        return p->{
+            p.setOneIndexedParameters(true);
+            p.setMaxPageSize(10);
+        };
+    }
 
 }
