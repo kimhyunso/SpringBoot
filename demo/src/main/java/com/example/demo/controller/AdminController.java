@@ -34,21 +34,16 @@ public class AdminController {
         this.logService = logService;
     }
 
-
-
     // 쿼리스트링 : ?page=1&sort=descending
 
     @GetMapping("")
     public String getLogPage(Model model, @PageableDefault(sort = "createAt", direction = Sort.Direction.DESC, size = 3) Pageable pageable){
-        // descending : 내림차순
-        // ascending : 오름차순
-        // Sort sort = Sort.by("log_id").descending();
-        Specification<Log> spec = (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("content").get("ip").get("userEmail"), '%' + "테스트" + '%');
 
-        model.addAttribute("logList", logService.getLogList(pageable, spec));
-        // model.addAttribute("pageNo", pageNo);
-        // model.addAttribute("pageable", pageable);
+        // Specification<Log> spec = (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("content").get("ip").get("userEmail"), '%' + "테스트" + '%');
 
+        String searchValue = "로그";
+
+        model.addAttribute("logList", logService.getLogList(searchValue, pageable));
         return "admin/index";
     }
 

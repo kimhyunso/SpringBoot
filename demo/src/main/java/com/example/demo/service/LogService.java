@@ -28,9 +28,11 @@ public class LogService {
 
 
     @Transactional
-    public Page<LogDTO> getLogList(Pageable pageable, Specification<Log> spec){
+    public Page<LogDTO> getLogList(String searchValue, Pageable pageable){
 
-        return logRepository.findAll(spec, pageable).map(log->{
+
+
+        return logRepository.searchPage(searchValue, pageable).map(log->{
            return LogDTO.builder()
                    .logId(log.getLogId())
                    .content(log.getContent())

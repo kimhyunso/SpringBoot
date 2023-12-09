@@ -25,17 +25,16 @@ public class APIAdminController {
         this.logService = logService;
     }
 
+    // 1. Specification
+    // 2. QueryDSL
+
     @GetMapping("/v1/api/logs")
     public ResponseEntity<Page<LogDTO>> getLogApi(@PageableDefault(sort = {"createAt"}, direction = Sort.Direction.DESC ,size = 3) Pageable pageable){
-        Specification<Log> spec = Specification
-                .where((Specification<Log>)(root, query, criteriaBuilder) -> criteriaBuilder.isNotEmpty())
-                .and((Specification<Log>)(root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("ip"), '%' + "유저이름1" + '%'))
-                .and((Specification<Log>)(root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("userEmail"), '%' + "유저이름1" + '%'))
-                .and((Specification<Log>)(root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("content"), '%' + "유저이름1" + '%'));
 
 
+        String searchValue = "로그";
 
-        return ResponseEntity.ok().body(logService.getLogList(pageable, spec));
+        return ResponseEntity.ok().body(logService.getLogList(searchValue, pageable));
     }
 
 

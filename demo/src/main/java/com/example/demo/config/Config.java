@@ -1,10 +1,10 @@
 package com.example.demo.config;
 
-import com.example.demo.domain.AttachFile;
-import com.example.demo.domain.Board;
 import com.example.demo.repository.*;
 import com.example.demo.service.*;
-import org.hibernate.engine.jdbc.BlobProxy;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +24,9 @@ public class Config {
     private final AttachRepository attachRepository;
 
     private final CommentRepository commentRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public Config(MemberRepository memberRepository, CategoryRepository categoryRepository,
@@ -69,6 +72,11 @@ public class Config {
             p.setOneIndexedParameters(true);
             p.setMaxPageSize(10);
         };
+    }
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactory(){
+        return new JPAQueryFactory(entityManager);
     }
 
 }

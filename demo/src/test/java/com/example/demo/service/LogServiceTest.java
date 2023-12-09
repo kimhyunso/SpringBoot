@@ -25,9 +25,12 @@ public class LogServiceTest {
     @Test
     public void getLogListTest(){
         // Sort sort = Sort.by("log_id").descending();
+
+        String searchValue = "로그";
+
         Pageable pageable =  PageRequest.of(0, 5, Sort.Direction.DESC, "log_id");
 
-        assertNull(logService.getLogList(pageable));
+        assertNull(logService.getLogList(searchValue, pageable));
     }
 
     @Test

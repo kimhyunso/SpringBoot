@@ -39,8 +39,6 @@
 
 
 <ul class="pagination">
-
-
     <th:block th:with="log=${logList}">
         <li th:if="${!log.isLast() and !log.isFirst() or log.isLast()}" class="page-item">
             <a class="page-link" th:href="@{./admin(page=${log.getPageable().getPageNumber()})}">Prev</a>
@@ -48,18 +46,14 @@
 
 
         <li th:each="i : ${#numbers.sequence(1, log.getTotalPages())}" class="page-item">
-            <a class="page-link" th:href="@{./admin(page=${i})}">[[${i}]]</a>
+            <a  th:attr="class=${log.getPageable().getPageNumber()+1 == i ? 'page-link active' : 'page-link'}" th:href="@{./admin(page=${i})}">[[${i}]]</a>
         </li>
 
         <li th:if="${!log.isLast() and !log.isFirst() or log.isFirst()}" class="page-item">
             <a class="page-link" th:href="@{./admin(page=${log.getPageable().getPageNumber()+2})}">Next</a>
         </li>
     </th:block>
-
-<!--    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--    <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--    <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
 </ul>
+
 
 </html>
