@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.Log;
 import com.example.demo.dto.LogDTO;
 import com.example.demo.service.LogService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/admin")
 public class APIAdminController {
@@ -33,6 +35,8 @@ public class APIAdminController {
 
 
         String searchValue = "로그";
+        log.info("pageable Offset={}/ PageSize={}", pageable.getOffset(), pageable.getPageSize());
+
 
         return ResponseEntity.ok().body(logService.getLogList(searchValue, pageable));
     }

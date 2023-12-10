@@ -1,7 +1,7 @@
 package com.example.demo.repository.querydsl;
 
 
-import com.example.demo.domain.Log;
+
 import com.example.demo.domain.QLog;
 import com.example.demo.dto.LogDTO;
 import com.example.demo.dto.QLogDTO;
@@ -15,13 +15,9 @@ import java.util.List;
 
 public class LogRepositoryImpl implements LogRepositoryCustom{
 
-    private final JPAQueryFactory queryFactory;
-
-
     @Autowired
-    public LogRepositoryImpl(JPAQueryFactory queryFactory){
-        this.queryFactory = queryFactory;
-    }
+    private JPAQueryFactory queryFactory;
+
 
 
     @Override
@@ -37,7 +33,7 @@ public class LogRepositoryImpl implements LogRepositoryCustom{
                         log.ip
                 ))
                 .from(log)
-                .where(log.content.like(searchValue).and(log.ip.like(searchValue)).and(log.userEmail.like(searchValue)))
+                .where(log.content.contains(searchValue).or(log.ip.contains(searchValue)).or(log.userEmail.contains(searchValue)))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -46,11 +42,13 @@ public class LogRepositoryImpl implements LogRepositoryCustom{
         Long count = queryFactory
                 .select(log.count())
                 .from(log)
-                .where(log.content.like(searchValue).and(log.ip.like(searchValue)).and(log.userEmail.like(searchValue)))
+                .where(log.content.contains(searchValue).or(log.ip.contains(searchValue)).or(log.userEmail.contains(searchValue)))
                 .fetchOne();
 
         return new PageImpl<>(content, pageable, count);
+
     }
+
 
 
 }

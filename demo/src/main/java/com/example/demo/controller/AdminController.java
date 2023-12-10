@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 // 2가지 컨트롤러
@@ -37,11 +38,10 @@ public class AdminController {
     // 쿼리스트링 : ?page=1&sort=descending
 
     @GetMapping("")
-    public String getLogPage(Model model, @PageableDefault(sort = "createAt", direction = Sort.Direction.DESC, size = 3) Pageable pageable){
+    public String getLogPage(Model model, @PageableDefault(sort = "createAt", direction = Sort.Direction.DESC, size = 3) Pageable pageable,
+                             @RequestParam(name = "searchValue", defaultValue = "") String searchValue){
 
         // Specification<Log> spec = (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("content").get("ip").get("userEmail"), '%' + "테스트" + '%');
-
-        String searchValue = "로그";
 
         model.addAttribute("logList", logService.getLogList(searchValue, pageable));
         return "admin/index";

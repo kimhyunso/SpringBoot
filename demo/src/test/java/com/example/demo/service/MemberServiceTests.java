@@ -17,8 +17,8 @@ import java.util.stream.IntStream;
 @SpringBootTest
 public class MemberServiceTests {
 
-    @Autowired
-    private PasswordEncoder encoder;
+//    @Autowired
+//    private PasswordEncoder encoder;
 
     @Autowired
     private MemberService memberService;
@@ -29,7 +29,7 @@ public class MemberServiceTests {
                     .memberId(Long.valueOf(i))
                     .email("user" + i + "@naver.com")
                     .name("사용자" + i)
-                    .password(encoder.encode("1111"))
+                    .password("1111")
                     .ip("192.168.0.5")
                     .phoneNum("01012345678")
                     .build();

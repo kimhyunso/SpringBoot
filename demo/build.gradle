@@ -19,7 +19,6 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
-	querydsl.extendsFrom compileClasspath
 }
 
 repositories {
@@ -57,20 +56,25 @@ tasks.named('test') {
 
 // Querydsl 설정부
 def querydslDir = "src/generated/querydsl"
+
 querydsl {
 	jpa = true
 	querydslSourcesDir = querydslDir
 }
 
-//sourceSets {
-//	main.java.srcDir querydslDir
-//}
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java', querydslDir]
+		}
+	}
+}
+
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
 
 
 compileQuerydsl {
 	options.annotationProcessorPath = configurations.querydsl
-}
-
-clean {
-	delete file(querydslDir)
 }

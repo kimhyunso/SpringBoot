@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.repository.*;
+import com.example.demo.repository.querydsl.LogRepositoryImpl;
 import com.example.demo.service.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
@@ -25,8 +26,6 @@ public class Config {
 
     private final CommentRepository commentRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Autowired
     public Config(MemberRepository memberRepository, CategoryRepository categoryRepository,
@@ -74,9 +73,6 @@ public class Config {
         };
     }
 
-    @Bean
-    public JPAQueryFactory jpaQueryFactory(){
-        return new JPAQueryFactory(entityManager);
-    }
+
 
 }

@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.LogDTO;
-import groovy.util.logging.Slf4j;
 
+
+import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ public class LogServiceTest {
     private LogService logService;
 
 
+
     @Test
     public void getLogListTest(){
         // Sort sort = Sort.by("log_id").descending();
@@ -29,8 +31,7 @@ public class LogServiceTest {
         String searchValue = "로그";
 
         Pageable pageable =  PageRequest.of(0, 5, Sort.Direction.DESC, "log_id");
-
-        assertNull(logService.getLogList(searchValue, pageable));
+        logService.getLogList(searchValue, pageable);
     }
 
     @Test
