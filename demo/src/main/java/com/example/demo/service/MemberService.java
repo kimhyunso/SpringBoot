@@ -4,13 +4,14 @@ import com.example.demo.domain.Member;
 import com.example.demo.dto.MemberDTO;
 import com.example.demo.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 
 public class MemberService {
 
@@ -21,17 +22,8 @@ public class MemberService {
     }
 
     @Transactional
-    public List<MemberDTO> getMemberList(){
-        return memberRepository.findAll().stream()
-                .map(member -> {
-                    return MemberDTO.builder()
-                            .memberId(member.getMemberId())
-                            .ip(member.getIp())
-                            .phoneNum(member.getPhoneNum())
-                            .name(member.getName())
-                            .email(member.getEmail())
-                            .build();
-                }).collect(Collectors.toList());
+    public Page<MemberDTO> getMemberList(Pageable pageable, String searchValue){
+        return memberRepository.getSearchPages(pageable, searchValue);
     }
 
 

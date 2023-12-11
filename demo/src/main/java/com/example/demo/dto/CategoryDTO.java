@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import com.example.demo.domain.Board;
 import com.example.demo.domain.Category;
+import com.querydsl.core.annotations.QueryProjection;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,8 +12,6 @@ import java.util.List;
 
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class CategoryDTO {
 
@@ -21,5 +20,16 @@ public class CategoryDTO {
     private char isShow;
     private char isDrop;
     private List<Board> boardLists;
+
+
+    @QueryProjection
+    public CategoryDTO(Long cateId, String content, char isShow, char isDrop, List<Board> boardLists){
+        this.cateId = cateId;
+        this.content = content;
+        this.isShow = isShow;
+        this.isDrop = isDrop;
+        this.boardLists = boardLists;
+    }
+
 
 }

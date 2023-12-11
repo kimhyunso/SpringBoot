@@ -4,17 +4,15 @@ import com.example.demo.domain.AttachFile;
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Member;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.querydsl.core.annotations.QueryProjection;
+import lombok.*;
 
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Builder
-@Data
+@Getter
+@Setter
 public class BoardDTO {
 
     private Long boardId;
@@ -29,5 +27,25 @@ public class BoardDTO {
     private Member member;
 
     private List<AttachFile> attachFiles;
+
+    @QueryProjection
+    public BoardDTO(Long boardId, char isNotice, String title, String content, String contentHTML,
+                    char isSecret, String writer, String modifyer, Category category, Member member, List<AttachFile> attachFiles){
+        this.boardId = boardId;
+        this.isNotice = isNotice;
+        this.title = title;
+        this.content = content;
+        this.contentHTML = contentHTML;
+        this.isSecret = isSecret;
+        this.writer = writer;
+        this.modifyer = modifyer;
+        this.category = category;
+        this.member = member;
+        this.attachFiles = attachFiles;
+    }
+
+
+
+
 
 }

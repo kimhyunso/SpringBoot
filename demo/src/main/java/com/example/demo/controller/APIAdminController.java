@@ -11,10 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -31,12 +28,10 @@ public class APIAdminController {
     // 2. QueryDSL
 
     @GetMapping("/v1/api/logs")
-    public ResponseEntity<Page<LogDTO>> getLogApi(@PageableDefault(sort = {"createAt"}, direction = Sort.Direction.DESC ,size = 3) Pageable pageable){
+    public ResponseEntity<Page<LogDTO>> getLogApi(@PageableDefault(sort = {"createAt"}, direction = Sort.Direction.DESC ,size = 10) Pageable pageable
+        , @RequestParam(name = "searchValue", defaultValue = "") String searchValue){
 
-
-        String searchValue = "로그";
         log.info("pageable Offset={}/ PageSize={}", pageable.getOffset(), pageable.getPageSize());
-
 
         return ResponseEntity.ok().body(logService.getLogList(searchValue, pageable));
     }

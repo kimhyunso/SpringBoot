@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Log;
 import com.example.demo.service.LogService;
+import com.example.demo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -30,22 +31,34 @@ public class AdminController {
 
     private final LogService logService;
 
+    private final MemberService memberService;
+
     @Autowired
-    public AdminController(LogService logService){
+    public AdminController(LogService logService, MemberService memberService){
         this.logService = logService;
+        this.memberService = memberService;
     }
 
     // 쿼리스트링 : ?page=1&sort=descending
 
     @GetMapping("")
-    public String getLogPage(Model model, @PageableDefault(sort = "createAt", direction = Sort.Direction.DESC, size = 3) Pageable pageable,
+    public String getLogsPage(Model model, @PageableDefault(sort = "createAt", direction = Sort.Direction.DESC, size = 10) Pageable pageable,
                              @RequestParam(name = "searchValue", defaultValue = "") String searchValue){
-
-        // Specification<Log> spec = (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("content").get("ip").get("userEmail"), '%' + "테스트" + '%');
 
         model.addAttribute("logList", logService.getLogList(searchValue, pageable));
         return "admin/index";
     }
+
+
+    // TODO: member 나중에 만들기
+    @GetMapping("/members")
+    public String getMembersPage(Model model, @PageableDefault(size = 10, sort = "memberId", direction = Sort.Direction.DESC) Pageable pageable,
+                                 @RequestParam(name = "searchValue", defaultValue = "") String searchValue){
+        model.addAttribute("memberList", memberService.getMemberList(pageable, searchValue));
+        return "admin/member/list";
+    }
+
+
 
     
 

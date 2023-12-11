@@ -29,16 +29,7 @@ public class LogService {
 
     @Transactional
     public Page<LogDTO> getLogList(String searchValue, Pageable pageable){
-
-
-
-        return logRepository.searchPage(searchValue, pageable).map(log->{
-           return LogDTO.builder()
-                   .logId(log.getLogId())
-                   .content(log.getContent())
-                   .userEmail(log.getUserEmail())
-                   .build();
-        });
+        return logRepository.searchPage(searchValue, pageable);
     }
 
     @Transactional
