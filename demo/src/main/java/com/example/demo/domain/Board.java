@@ -68,11 +68,10 @@ public class Board {
     @JoinColumn(name = "memberId")
     private Member member;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board")
     private List<AttachFile> attachFiles = new ArrayList<>();
 
-
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board")
     private List<Comment> comments = new ArrayList<>();
 
 

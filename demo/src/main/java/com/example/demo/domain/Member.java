@@ -18,7 +18,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "MEMBER")
+@Table(name = "member")
 @Builder(builderMethodName = "MemberBuilder")
 public class Member {
 
@@ -51,14 +51,13 @@ public class Member {
 
     // PersistentBag ==> List
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
-    private List<Board> boards = new ArrayList<Board>();
+    private List<Board> boards = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "member")
     private List<AttachFile> attachFiles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "member")
     private List<Comment> comments = new ArrayList<>();
-
 
 
 //    @ElementCollection(fetch = FetchType.LAZY)

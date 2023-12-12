@@ -5,6 +5,7 @@ import com.example.demo.domain.Category;
 import com.example.demo.dto.CategoryDTO;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.CategoryService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 public class CategoryServiceTests {
@@ -32,10 +34,12 @@ public class CategoryServiceTests {
 
             int randomInt = (int)Math.floor(Math.random() * (max - min + 1) + min);
 
+
+
             CategoryDTO categoryDTO = CategoryDTO.builder()
                     .cateId(Long.valueOf(i))
-                    .isShow((char)(randomInt - '0'))
-                    .isDrop((char)(randomInt - '0'))
+                    .isShow((char)(randomInt + '0'))
+                    .isDrop((char)(randomInt + '0'))
                     .content("테스트" + i)
                     .build();
 
@@ -50,12 +54,12 @@ public class CategoryServiceTests {
 
         categoryService.getCategoryList().forEach(category->{
             category.getBoardLists().stream().forEach(b->{
-                assertNotNull(b.getTitle());
+                assertThat(b.getTitle());
             });
 
         });
 
-        assertNotNull(categoryService.getCategoryList());
+        assertThat(categoryService.getCategoryList());
     }
 
     // U
@@ -90,7 +94,7 @@ public class CategoryServiceTests {
         Optional<Category> category = categoryService.findOne(idx);
         String content = category.get().getContent();
 
-        assertNotNull(content);
+        assertThat(content);
     }
 
 

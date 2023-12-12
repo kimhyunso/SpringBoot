@@ -6,6 +6,7 @@ import com.example.demo.dto.BoardDTO;
 import com.example.demo.repository.BoardRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    // C
+
     @Transactional(readOnly = true)
-    public List<BoardDTO> getBoardList(){
+    public List<BoardDTO> getBoardList(Pageable pageable, String searchValue){
 
 
-        return boardRepository.findAll().stream()
+        return boardRepository.getSearchPages(pageable, searchValue).stream()
                 .map(board ->{
                     return BoardDTO.builder()
                             .boardId(board.getBoardId())

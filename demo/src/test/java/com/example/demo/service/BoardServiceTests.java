@@ -10,6 +10,9 @@ import groovy.util.logging.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.stream.IntStream;
 
@@ -28,7 +31,15 @@ public class BoardServiceTests {
 
     @Test
     public void getBoardListTest(){
-        boardService.getBoardList().stream().forEach(boardDTO -> {
+
+
+        Sort sort = Sort.by("boardId").descending();
+
+        Pageable pageable = PageRequest.of(0, 5).withSort(sort);
+
+        String searchValue = "게시물";
+
+        boardService.getBoardList(pageable, searchValue).stream().forEach(boardDTO -> {
             System.out.println(boardDTO.getTitle());
         });
         // assertNotNull(boardService.getBoardList());
@@ -39,10 +50,9 @@ public class BoardServiceTests {
         // 1. CategoryService, boardService findOne ==> category_Id
         // 2. Category, Board = new () ==> 인스턴스 직접던지기
 
-        Category category = categoryService.findOne(1L).get();
+        Category category = categoryService.findOne(21L).get();
 
         Member member = memberService.findOne(1L).get();
-
 
         IntStream.rangeClosed(1, 10).forEach(i->{
             BoardDTO boardDTO = BoardDTO.builder()
