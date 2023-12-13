@@ -29,7 +29,6 @@ public class AttachFileService {
                             .orgName(attachFile.getOrgName())
                             .downCnt(attachFile.getDownCnt())
                             .board(attachFile.getBoard())
-                            .member(attachFile.getMember())
                             .build();
                 }).collect(Collectors.toList());
     }

@@ -3,10 +3,8 @@ package com.example.demo.service;
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Member;
 import com.example.demo.dto.BoardDTO;
-import com.example.demo.service.BoardService;
-import com.example.demo.service.CategoryService;
-import com.example.demo.service.MemberService;
-import groovy.util.logging.Slf4j;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +14,7 @@ import org.springframework.data.domain.Sort;
 
 import java.util.stream.IntStream;
 
-@Slf4j
+
 @SpringBootTest
 public class BoardServiceTests {
 
@@ -35,9 +33,9 @@ public class BoardServiceTests {
 
         Sort sort = Sort.by("boardId").descending();
 
-        Pageable pageable = PageRequest.of(0, 5).withSort(sort);
+        Pageable pageable = PageRequest.of(0, 100).withSort(sort);
 
-        String searchValue = "게시물";
+        String searchValue = "내용";
 
         boardService.getBoardList(pageable, searchValue).stream().forEach(boardDTO -> {
             System.out.println(boardDTO.getTitle());
@@ -50,7 +48,7 @@ public class BoardServiceTests {
         // 1. CategoryService, boardService findOne ==> category_Id
         // 2. Category, Board = new () ==> 인스턴스 직접던지기
 
-        Category category = categoryService.findOne(21L).get();
+        Category category = categoryService.findOne(41L).get();
 
         Member member = memberService.findOne(1L).get();
 

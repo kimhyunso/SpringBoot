@@ -13,8 +13,8 @@ public class QCategoryDTO extends ConstructorExpression<CategoryDTO> {
 
     private static final long serialVersionUID = 52405144L;
 
-    public QCategoryDTO(com.querydsl.core.types.Expression<Long> cateId, com.querydsl.core.types.Expression<String> content, com.querydsl.core.types.Expression<Character> isShow, com.querydsl.core.types.Expression<Character> isDrop, com.querydsl.core.types.Expression<? extends java.util.List<com.example.demo.domain.Board>> boardLists) {
-        super(CategoryDTO.class, new Class<?>[]{long.class, String.class, char.class, char.class, java.util.List.class}, cateId, content, isShow, isDrop, boardLists);
+    public QCategoryDTO(com.querydsl.core.types.Expression<Long> cateId, com.querydsl.core.types.Expression<String> content, com.querydsl.core.types.Expression<Character> isShow, com.querydsl.core.types.Expression<Character> isDrop) {
+        super(CategoryDTO.class, new Class<?>[]{long.class, String.class, char.class, char.class}, cateId, content, isShow, isDrop);
     }
 
 }

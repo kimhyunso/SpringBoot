@@ -30,8 +30,6 @@ public class CommentService {
                     .content(comment.getContent())
                     .modifyer(comment.getModifyer())
                     .writer(comment.getWriter())
-                    .board(comment.getBoard())
-                    .member(comment.getMember())
                     .build();
         }).collect(Collectors.toList());
     }

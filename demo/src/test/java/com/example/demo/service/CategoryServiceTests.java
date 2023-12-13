@@ -52,12 +52,6 @@ public class CategoryServiceTests {
     @Test
     public void getLists(){
 
-        categoryService.getCategoryList().forEach(category->{
-            category.getBoardLists().stream().forEach(b->{
-                assertThat(b.getTitle());
-            });
-
-        });
 
         assertThat(categoryService.getCategoryList());
     }

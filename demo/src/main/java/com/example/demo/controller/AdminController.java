@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.domain.Log;
+import com.example.demo.service.BoardService;
 import com.example.demo.service.LogService;
 import com.example.demo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,10 +34,13 @@ public class AdminController {
 
     private final MemberService memberService;
 
+    private final BoardService boardService;
+
     @Autowired
-    public AdminController(LogService logService, MemberService memberService){
+    public AdminController(LogService logService, MemberService memberService, BoardService boardService){
         this.logService = logService;
         this.memberService = memberService;
+        this.boardService = boardService;
     }
 
     // 쿼리스트링 : ?page=1&sort=descending
@@ -56,6 +60,13 @@ public class AdminController {
                                  @RequestParam(name = "searchValue", defaultValue = "") String searchValue){
         model.addAttribute("memberList", memberService.getMemberList(pageable, searchValue));
         return "admin/member/list";
+    }
+
+    @GetMapping("/boards")
+    public String getBoardsPage(Model model, @PageableDefault(size = 10, sort = "memberId", direction = Sort.Direction.DESC) Pageable pageable,
+                                 @RequestParam(name = "searchValue", defaultValue = "") String searchValue){
+        model.addAttribute("boardList", boardService.getBoardList(pageable, searchValue));
+        return "admin/board/list";
     }
 
 

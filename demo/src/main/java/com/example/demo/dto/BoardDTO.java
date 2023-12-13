@@ -26,11 +26,9 @@ public class BoardDTO {
     private Category category;
     private Member member;
 
-    private List<AttachFile> attachFiles;
-
     @QueryProjection
     public BoardDTO(Long boardId, char isNotice, String title, String content, String contentHTML,
-                    char isSecret, String writer, String modifyer, Category category, Member member, List<AttachFile> attachFiles){
+                    char isSecret, String writer, String modifyer, Category category, Member member){
         this.boardId = boardId;
         this.isNotice = isNotice;
         this.title = title;
@@ -41,7 +39,6 @@ public class BoardDTO {
         this.modifyer = modifyer;
         this.category = category;
         this.member = member;
-        this.attachFiles = attachFiles;
     }
 
 

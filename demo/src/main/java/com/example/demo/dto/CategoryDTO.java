@@ -19,16 +19,16 @@ public class CategoryDTO {
     private String content;
     private char isShow;
     private char isDrop;
-    private List<Board> boardLists;
+
 
 
     @QueryProjection
-    public CategoryDTO(Long cateId, String content, char isShow, char isDrop, List<Board> boardLists){
+    public CategoryDTO(Long cateId, String content, char isShow, char isDrop){
         this.cateId = cateId;
         this.content = content;
         this.isShow = isShow;
         this.isDrop = isDrop;
-        this.boardLists = boardLists;
+
     }
 
 

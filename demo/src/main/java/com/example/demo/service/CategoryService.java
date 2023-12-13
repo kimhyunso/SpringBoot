@@ -40,7 +40,7 @@ public class CategoryService {
                             .isDrop(category.getIsDrop())
                             .isShow(category.getIsShow())
                             .content(category.getContent())
-                            .boardLists(category.getBoards())
+
                             .build();
                 }).collect(Collectors.toList());
     }
