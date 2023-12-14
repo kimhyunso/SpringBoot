@@ -60,6 +60,7 @@ public class Board {
     @UpdateTimestamp
     private LocalDateTime modifyAt = LocalDateTime.now();
 
+    // 연관관계의 주인
     @ManyToOne
     @JoinColumn(name = "cateId")
     private Category category;

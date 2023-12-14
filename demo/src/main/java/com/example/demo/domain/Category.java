@@ -42,6 +42,8 @@ public class Category {
     // 디자인 패턴 : 프록시
     // ============= 영속성 컨텍스트의 Lazy Loading =======
 
+
+    // mappedBy 읽기전용
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Board> boards = new ArrayList<>();
 
