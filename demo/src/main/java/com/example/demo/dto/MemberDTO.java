@@ -33,4 +33,5 @@ public class MemberDTO {
         this.ip = ip;
     }
 
+
 }

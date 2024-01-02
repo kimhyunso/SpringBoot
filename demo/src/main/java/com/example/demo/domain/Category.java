@@ -1,14 +1,13 @@
 package com.example.demo.domain;
 
 import com.example.demo.dto.CategoryDTO;
-import com.example.demo.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@SuppressWarnings("Lombok")
 @Table(name = "category")
 @NoArgsConstructor
 @AllArgsConstructor

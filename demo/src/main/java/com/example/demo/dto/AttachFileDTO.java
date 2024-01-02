@@ -3,14 +3,12 @@ package com.example.demo.dto;
 import com.example.demo.domain.Board;
 import com.example.demo.domain.Member;
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-
-@Setter
-@Getter
+@Data
 @Builder
 public class AttachFileDTO {
 

@@ -1,20 +1,18 @@
 package com.example.demo.domain;
 
+
 import com.example.demo.dto.BoardDTO;
-import com.example.demo.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+@SuppressWarnings("Lombok")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -104,10 +102,6 @@ public class Board {
         member.getBoards().add(this);
         this.member = member;
     }
-
-
-
-
 
 
 }

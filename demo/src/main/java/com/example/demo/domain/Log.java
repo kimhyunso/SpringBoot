@@ -7,7 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-
+@SuppressWarnings("Lombok")
 @Setter
 @Getter
 @Table(name = "log")
@@ -46,4 +46,7 @@ public class Log {
         this.setUserEmail(dto.getUserEmail());
         this.setIp(dto.getIp());
     }
+
+
+
 }

@@ -1,18 +1,15 @@
 package com.example.demo.domain;
 
-import com.example.demo.dto.BoardDTO;
-import com.example.demo.dto.CategoryDTO;
 import com.example.demo.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.collection.spi.PersistentBag;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
-
+@SuppressWarnings("Lombok")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -60,13 +57,13 @@ public class Member {
     private List<Comment> comments = new ArrayList<>();
 
 
-//    @ElementCollection(fetch = FetchType.LAZY)
-//    @Builder.Default
-//    private Set<MemberRole> roleSet = new HashSet<MemberRole>();
-//
-//    public void addMemberRole(MemberRole memberRole){
-//        roleSet.add(memberRole);
-//    }
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<MemberRole> roleSet = new HashSet<MemberRole>();
+
+    public void addMemberRole(MemberRole memberRole){
+        roleSet.add(memberRole);
+    }
 
 
     public void convertToDomain(MemberDTO memberDTO){

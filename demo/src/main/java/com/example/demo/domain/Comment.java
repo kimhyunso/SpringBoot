@@ -5,11 +5,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedBy;
 
 import java.time.LocalDateTime;
 
-
+@SuppressWarnings("Lombok")
 @Table(name = "comment")
 @Entity
 @AllArgsConstructor

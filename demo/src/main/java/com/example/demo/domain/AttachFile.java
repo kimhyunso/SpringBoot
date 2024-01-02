@@ -3,12 +3,12 @@ package com.example.demo.domain;
 import com.example.demo.dto.AttachFileDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+@SuppressWarnings("Lombok")
 @Builder
 @Table(name = "attachFile")
 @Setter

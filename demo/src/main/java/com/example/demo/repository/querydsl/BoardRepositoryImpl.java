@@ -1,16 +1,8 @@
 package com.example.demo.repository.querydsl;
 
 import com.example.demo.domain.*;
-import com.example.demo.domain.QAttachFile;
-import com.example.demo.domain.QBoard;
-import com.example.demo.domain.QCategory;
-import com.example.demo.domain.QComment;
-import com.example.demo.domain.QMember;
 import com.example.demo.dto.BoardDTO;
-import com.example.demo.dto.CategoryDTO;
 import com.example.demo.dto.QBoardDTO;
-import com.querydsl.core.group.GroupBy;
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
